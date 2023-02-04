@@ -16,18 +16,38 @@
         <div class="form-group">
             <label for="Merch Name">Merch Name <span style="color: red">*</span></label>
             <input type="text" class="form-control @error('merch_name') is-invalid @enderror" id="merch_name" name="merch_name">
+         @error('merch_name')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+             @enderror
         </div>
         <div class="form-group">
             <label for="Keyword">Keyword <span style="color: red">*</span></label>
             <input type="text" class="form-control @error('keyword') is-invalid @enderror" id="keyword" name="keyword">
+         @error('keyword')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+             @enderror
         </div>
         <div class="form-group">
             <label for="Verification Keyword">Verification Keyword </label>
             <input type="text" class="form-control @error('verification_keyword') is-invalid @enderror" id="verification_keyword" name="verification_keyword">
+         @error('verification_keyword')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+             @enderror
         </div>
         <div class="form-group">
             <label for="Minimal Point">Minimal Point <span style="color: red">*</span></label>
             <input type="number" class="form-control @error('minimal_point') is-invalid @enderror" id="minimal_point" name="minimal_point">
+         @error('minimal_point')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+             @enderror
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Input Image <span style="color: red">*</span></label>

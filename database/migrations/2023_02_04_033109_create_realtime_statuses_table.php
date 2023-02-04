@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stores', function (Blueprint $table) {
+        Schema::create('realtime_statuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('store_name');
-            $table->string('address');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stores');
+        Schema::dropIfExists('realtime_statuses');
     }
 };

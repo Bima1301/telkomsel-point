@@ -15,7 +15,12 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'stores' => Store::latest()->get(),
+            'page' => 'Store |',
+            'active' => 'store'
+        ];
+        return view('pages.store',$data);
     }
 
     /**
@@ -25,7 +30,11 @@ class StoreController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'page' => 'Store |',
+            'active' => 'store'
+        ];
+        return view('pages.store.create',$data);
     }
 
     /**
@@ -36,7 +45,13 @@ class StoreController extends Controller
      */
     public function store(StoreStoreRequest $request)
     {
-        //
+        Store::create([
+            'user_id' => auth()->user()->id,
+            'store_name' => $request->store_name,
+            'address' => $request->address,
+        ]);
+        
+        return redirect('/store')->with('success', 'New store has been added!');
     }
 
     /**
@@ -58,7 +73,12 @@ class StoreController extends Controller
      */
     public function edit(Store $store)
     {
-        //
+        $data = [
+            'store' => $store,
+            'page' => 'Store |',
+            'active' => 'store'
+        ];
+        return view('pages.store.edit',$data);
     }
 
     /**
@@ -70,7 +90,13 @@ class StoreController extends Controller
      */
     public function update(UpdateStoreRequest $request, Store $store)
     {
-        //
+        Store::where('id',$store->id)->update([
+            'user_id' => auth()->user()->id,
+            'store_name' => $request->store_name,
+            'address' => $request->address,
+        ]);
+    
+    return redirect('/store')->with('success', 'Store has been updated!');
     }
 
     /**

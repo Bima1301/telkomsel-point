@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\MerchandiseController;
+use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use App\Models\Stock;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [UserController::class, 'index'])->name('index')->middleware(('auth'));
 
 Route::resource('/merchandise', MerchandiseController::class)->middleware('auth');
-Route::resource('/stock', Stock::class)->middleware('auth');
+Route::resource('/store', StoreController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

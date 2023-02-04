@@ -39,8 +39,8 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+            <li class="nav-item {{ ($active === "store") ? 'active' : '' }}">
+                <a class="nav-link" href="/store">
                     <i class="fas fa-fw fa-store"></i>
                     <span>Create Store</span></a>
             </li>
