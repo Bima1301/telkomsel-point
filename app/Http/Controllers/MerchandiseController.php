@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Merchandise;
 use App\Http\Requests\StoreMerchandiseRequest;
 use App\Http\Requests\UpdateMerchandiseRequest;
+use App\Models\RealtimeStatus;
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Support\Facades\Storage;
 
@@ -58,8 +59,13 @@ class MerchandiseController extends Controller
         // if ($request->file('image')) {
         //     $validatedData['image'] = $request->file('image')->store('merch-image');
         // }
-
+        $RealtimeStatus = RealtimeStatus::create([
+            'stock_in' => 0,
+            'stock_out' => 0,
+            'remaining_stock' => 0
+        ]);
         Merchandise::create([
+            'realtime_status_id' => $RealtimeStatus->id,
             'merch_name' => $request->merch_name,
             'keyword' => $request->keyword,
             'verification_keyword' => $request->verification_keyword,

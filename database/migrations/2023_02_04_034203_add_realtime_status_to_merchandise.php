@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('merchandises', function (Blueprint $table) {
-            $table->id();
-            $table->string('merch_name');
-            $table->string('image');
-            $table->string('keyword');
-            $table->string('verification_keyword')->nullable();
-            $table->integer('minimal_point');
-            $table->timestamps();
+        Schema::table('merchandises', function (Blueprint $table) {
+            $table->foreignId('realtime_status_id')->after('id')->nullable()->constrained('realtime_statuses')->onUpdate('cascade');
         });
     }
 
@@ -31,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('merchandises');
+        Schema::table('merchandises', function (Blueprint $table) {
+            $table->dropForeign(['realtime_status_id']);
+            $table->dropColumn('realtime_status_id');
+        });
     }
 };

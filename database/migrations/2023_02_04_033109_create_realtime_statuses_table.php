@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('realtime_statuses', function (Blueprint $table) {
             $table->id();
+            $table->integer('stock_in')->nullable();
+            $table->integer('stock_out')->nullable();
+            $table->integer('remaining_stock')->nullable();
             $table->timestamps();
         });
     }

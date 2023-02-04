@@ -73,6 +73,7 @@ class StoreController extends Controller
      */
     public function edit(Store $store)
     {
+        // dd($store);
         $data = [
             'store' => $store,
             'page' => 'Store |',

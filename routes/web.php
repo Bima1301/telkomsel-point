@@ -3,6 +3,8 @@
 use App\Http\Controllers\MerchandiseController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RealStockStatus;
+use App\Http\Controllers\RealtimeStatusController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +19,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('realstock/edit/{id}', [RealStockStatus::class, 'edit'])->middleware('auth'); //route untuk ke halaman edit data
+Route::put('realstock/update/{id}', [RealStockStatus::class, 'update'])->middleware('auth'); //route untuk mengupdate data ke database
+Route::post('realstock/update/{id}', [RealStockStatus::class, 'update'])->middleware('auth'); //route untuk mengupdate data ke database
+
 Route::get('/', [UserController::class, 'index'])->name('index')->middleware(('auth'));
+
+Route::resource('/realStock', RealtimeStatusController::class)->middleware('auth');
+Route::put('/realStock', [RealtimeStatusController::class, 'update']);
 
 Route::resource('/merchandise', MerchandiseController::class)->middleware('auth');
 Route::resource('/store', StoreController::class)->middleware('auth');

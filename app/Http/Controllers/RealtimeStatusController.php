@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RealtimeStatus;
 use App\Http\Requests\StoreRealtimeStatusRequest;
 use App\Http\Requests\UpdateRealtimeStatusRequest;
+use App\Models\Merchandise;
 
 class RealtimeStatusController extends Controller
 {
@@ -15,7 +16,13 @@ class RealtimeStatusController extends Controller
      */
     public function index()
     {
-        //
+        $realtime_Status = Merchandise::join('realtime_statuses', 'merchandises.realtime_status_id' , '=' , 'realtime_statuses.id')->latest('realtime_statuses.created_at')->get();
+        $data = [
+            'page' => '',
+            'active' => 'dashboard',
+            'realtime_status' => $realtime_Status
+        ];
+        return view('pages.index',$data);
     }
 
     /**
@@ -58,7 +65,13 @@ class RealtimeStatusController extends Controller
      */
     public function edit(RealtimeStatus $realtimeStatus)
     {
-        //
+        // dd($realtimeStatus->stock_in);
+        $data = [
+            'realtime_status' => $realtimeStatus,
+            'page' => '',
+            'active' => 'dashboard'
+        ];
+        return view('pages.realtimeStock.edit',$data);
     }
 
     /**
@@ -70,7 +83,10 @@ class RealtimeStatusController extends Controller
      */
     public function update(UpdateRealtimeStatusRequest $request, RealtimeStatus $realtimeStatus)
     {
-        //
+        RealtimeStatus::where('id',$realtimeStatus->id)->update([
+            'stock_in' => $request->stock_in,
+        ]);
+    return redirect('/')->with('success', 'Merchandise has been updated!');
     }
 
     /**

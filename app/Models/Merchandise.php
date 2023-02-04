@@ -9,4 +9,9 @@ class Merchandise extends Model
 {
     protected $guarded =['id'];
     use HasFactory;
+
+    public function realtimeStatus()
+    {
+        return $this->hasOne(RealtimeStatus::class);
+    }
 }

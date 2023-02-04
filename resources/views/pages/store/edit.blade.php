@@ -13,42 +13,32 @@
     <div class="card-body">
         <form action="/store/{{ $store->id }}" method="post">
             @method('put')
-        @csrf
-        <div class="form-group">
-            <label for="Store Name">Store Name <span style="color: red">*</span></label>
-            <input type="text" class="form-control @error('store_name') is-invalid @enderror" id="store_name" name="store_name" value="{{ old('store_name', $store->store_name) }}">
-            @error('store_name')
-            <div class="invalid-feedback">
-                {{ $message }}
+            @csrf
+            <div class="form-group">
+                <label for="Store Name">Store Name <span style="color: red">*</span></label>
+                <input type="text" class="form-control @error('store_name') is-invalid @enderror" id="store_name"
+                    name="store_name" value="{{ old('store_name', $store->store_name) }}">
+                @error('store_name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
-             @enderror
-        </div>
-        <div class="form-group">
-            <label for="Address">Address <span style="color: red">*</span></label>
-            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address', $store->address) }}">
-            @error('address')
-            <div class="invalid-feedback">
-                {{ $message }}
+            <div class="form-group">
+                <label for="Address">Address <span style="color: red">*</span></label>
+                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
+                    name="address" value="{{ old('address', $store->address) }}">
+                @error('address')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
-             @enderror
-        </div>
-        <button type="submit" class="btn btn-danger">Add</button>
-    </form>
+            <button type="submit" class="btn btn-danger">Add</button>
+        </form>
     </div>
 </div>
 
 @include('partials.foot')
-<script>
-    function previewImage() {
-            const image = document.querySelector('#image');
-            const imgPreview = document.querySelector('.img-preview')
-            imgPreview.style.display = 'block';
-            const ofReader = new FileReader();
-            ofReader.readAsDataURL(image.files[0]);
-
-            ofReader.onload = function (oFREvent){
-                imgPreview.src = oFREvent.target.result;
-            }
-        }
 </script>
 @include('partials.footer')
