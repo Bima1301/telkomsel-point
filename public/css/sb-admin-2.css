@@ -10860,8 +10860,8 @@ a:focus {
   }
 }
 
-.bg-login-image {
-  background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+.bg-login-image-new {
+  background: url("../img/grapari.png");
   background-position: center;
   background-size: cover;
 }

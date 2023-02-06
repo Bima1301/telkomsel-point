@@ -1,6 +1,6 @@
 @include('partials.head')
 
-<body class="bg-gradient-primary">
+<body class="" style="background-color: #FFF0F0">
 
     <div class="container">
         @error('failedLogin')
@@ -20,7 +20,7 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image-new"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
@@ -48,7 +48,7 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary btn-user btn-block"
+                                        <button type="submit" class="btn btn-danger btn-user btn-block"
                                             style="margin-top: 100px">
                                             Login
                                         </button>
@@ -63,7 +63,7 @@
                                     </form>
 
                                     <div class="text-center">
-                                        <a class="small" href="/register">Create an Account!</a>
+                                        <a class="text-danger small text-decoration-none" href="/register">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

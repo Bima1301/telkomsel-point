@@ -1,8 +1,38 @@
-.accordion{
+.accordion {
     transition: width 0.2s !important;
 }
+.logo-img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+}
 @media only screen and (min-width:768px) {
-.navbar-judul{
+    .logo-img {
+        object-fit: cover;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .navbar-judul {
         font-size: 30px;
     }
+}
+
+.bg-login-image-new {
+    background: url("../img/grapari.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-register-image {
+    background: url("../img/grapari.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.page-item.active .page-link {
+    background-color: #e74a3b !important;
+    border-color: #e74a3b;
 }

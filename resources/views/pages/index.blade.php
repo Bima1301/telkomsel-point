@@ -13,7 +13,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
+                                        <tr class="text-center">
                                             <th>No</th>
                                             <th>Merchandise</th>
                                             <th>Stock In</th>
@@ -25,18 +25,18 @@
                                     <tbody>
                                         @foreach ($realtime_status as $rs)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{{ $rs->merch_name }}</td>
-                                            <td>{{ $rs->stock_in }}</td>
+                                            <td class="text-center">{{ $rs->stock_in }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <div>
-                                                    <a href="{{url('realstock/edit')}}/{{$rs->id}}" class="btn btn-success btn-circle">
+                                                    <a href="{{url('realstock/edit')}}/{{$rs->id}}" class="btn-sm btn-success btn-rectangle">
                                                         <i class="fas fa-plus"></i>
                                                     </a>
                                                 </div>
                                             </td>
-                                            <td>{{ $rs->stock_out }}</td>
-                                            <td>{{ $rs->remaining_stock }}</td>
+                                            <td class="text-center">{{ $rs->stock_out }}</td>
+                                            <td class="text-center">{{ $rs->remaining_stock }}</td>
                                         </tr>
                                         @endforeach
                                         

@@ -51,13 +51,13 @@
                             <td>{{ $merchan->minimal_point }}</td>
                             <td class="d-flex flex-row justify-content-around">
                                 <div>
-                                    <a href="/merchandise/{{ $merchan->id }}/edit" class="btn btn-success btn-circle">
+                                    <a href="/merchandise/{{ $merchan->id }}/edit" class="btn btn-success btn-rectangle">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </div>
 
                                 <div>
-                                    <a class="btn btn-danger btn-circle" data-toggle="modal"
+                                    <a class="btn btn-danger btn-rectangle" data-toggle="modal"
                                         data-target="#myModal{{ $merchan->id }}">
                                         <i class="fas fa-trash"></i>
                                     </a>

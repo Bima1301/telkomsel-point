@@ -16,6 +16,9 @@ class SuperUser
      */
     public function handle(Request $request, Closure $next)
     {
+        if(!auth()->check() || auth()->user()->role !== 'superUser'){
+            abort(403);
+        }
         return $next($request);
     }
 }

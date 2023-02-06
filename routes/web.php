@@ -24,6 +24,7 @@ Route::put('realstock/update/{id}', [RealStockStatus::class, 'update'])->middlew
 Route::post('realstock/update/{id}', [RealStockStatus::class, 'update'])->middleware('auth'); //route untuk mengupdate data ke database
 
 Route::get('/', [UserController::class, 'index'])->name('index')->middleware(('auth'));
+Route::get('/data-of-user', [UserController::class, 'show'])->middleware(('superUser'));
 
 Route::resource('/realStock', RealtimeStatusController::class)->middleware('auth');
 Route::put('/realStock', [RealtimeStatusController::class, 'update']);

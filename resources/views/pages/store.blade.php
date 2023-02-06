@@ -42,12 +42,12 @@
                         <td>{{ $store->address }}</td>
                         <td class="d-flex flex-row justify-content-around">
                             <div>
-                                <a href="/store/{{ $store->id }}/edit" class="btn btn-success btn-circle">
+                                <a href="/store/{{ $store->id }}/edit" class="btn btn-success btn-rectangle">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </div>
                             <div style="margin-left: 10px">
-                                <a class="btn btn-danger btn-circle" data-toggle="modal"
+                                <a class="btn btn-danger btn-rectangle" data-toggle="modal"
                                     data-target="#myModal{{ $store->id }}">
                                     <i class="fas fa-trash"></i>
                                 </a>

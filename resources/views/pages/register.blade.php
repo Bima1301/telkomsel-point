@@ -1,6 +1,6 @@
 @include('partials.head')
 
-<body class="bg-gradient-primary">
+<body class="" style="background-color: #FFF0F0">
 
     <div class="container">
 
@@ -12,7 +12,7 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4 font-weight-bold">Create an Account!</h1>
                             </div>
                             <form class="user" method="POST" action="{{ route('register') }}">
                                 @csrf
@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" style="margin-top: 100px"
-                                    class="btn btn-primary btn-user btn-block">
+                                    class="btn btn-danger btn-user btn-block">
                                     Register Account
                                 </button>
                                 <hr>
@@ -70,7 +70,7 @@
                             </form>
 
                             <div class="text-center">
-                                <a class="small" href="/login">Already have an account? Login!</a>
+                                <a class="small text-danger text-decoration-none" href="/login">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
