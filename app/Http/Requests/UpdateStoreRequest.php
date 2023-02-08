@@ -24,7 +24,8 @@ class UpdateStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'store_name' => 'required|max:255',
+            'address' => 'required|max:255',
         ];
     }
 }

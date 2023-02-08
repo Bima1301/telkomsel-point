@@ -4,12 +4,25 @@
 
     <div class="container">
         @error('failedLogin')
-        <div class="alert alert-warning alert-dismissible fade show mt-3 d-flex justify-content-between align-items-center" role="alert">
-            <div>
-                <strong>Anda tidak dapat login!</strong> {{ $message }}
+            <div class="alert alert-warning alert-dismissible fade show mt-3 d-flex justify-content-between align-items-center"
+                role="alert">
+                <div>
+                    <strong>Anda tidak dapat login!</strong> {{ $message }}
+                </div>
+                <button style="background-color: white; font-weight: 700; border: 1px solid #806520" type="button"
+                    class="btn" data-bs-dismiss="alert" aria-label="Close">X</button>
             </div>
-            <button style="background-color: white; font-weight: 700; border: 1px solid #806520" type="button" class="btn" data-bs-dismiss="alert" aria-label="Close">X</button>
-          </div>
+        @enderror
+
+        @error('email')
+            <div class="alert alert-danger alert-dismissible fade show mt-3 d-flex justify-content-between align-items-center"
+                role="alert">
+                <div>
+                    <strong>Login Failed!</strong> {{ $message }}
+                </div>
+                <button style="background-color: white; font-weight: 700; border: 1px solid #806520" type="button"
+                    class="btn" data-bs-dismiss="alert" aria-label="Close">X</button>
+            </div>
         @enderror
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -24,7 +37,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        
+
                                         <h1 class="h4 text-gray-900 mb-4 font-weight-bold">Welcome Back!</h1>
                                     </div>
                                     <form class="user" method="POST" action="{{ route('login') }}">
@@ -63,7 +76,8 @@
                                     </form>
 
                                     <div class="text-center">
-                                        <a class="text-danger small text-decoration-none" href="/register">Create an Account!</a>
+                                        <a class="text-danger small text-decoration-none" href="/register">Create an
+                                            Account!</a>
                                     </div>
                                 </div>
                             </div>
@@ -88,6 +102,9 @@
     <script src="js/sb-admin-2.min.js"></script>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+</script>
+</body>
+
 </html>

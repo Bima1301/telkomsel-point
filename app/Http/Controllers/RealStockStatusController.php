@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RealtimeStatus;
 use Illuminate\Http\Request;
 
-class RealStockStatus extends Controller
+class RealStockStatusController extends Controller
 {
     public function edit($id){
 
@@ -19,10 +19,12 @@ class RealStockStatus extends Controller
 
     public function update(Request $request, $id){
         // dd($request);
-        RealtimeStatus::where('id',$id)->update([
-            'stock_in' => $request->stock_in,
-        ]);
-    return redirect('/')->with('success', 'Merchandise has been updated!');
+        $rules = [
+            'stock_in' => 'required',
+        ];
+        $validatedData = $request->validate($rules);
+        RealtimeStatus::where('id',$id)->update($validatedData);
+    return redirect('/')->with('success', "Merchandise's stock has been updated!");
     }
 }
 

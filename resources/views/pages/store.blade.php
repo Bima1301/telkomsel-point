@@ -17,7 +17,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row justify-content-between">
-        <h6 class="m-0 font-weight-bold text-danger">Real Time Status Stock Table</h6>
+        <h6 class="m-0 font-weight-bold text-danger">Store Data Table</h6>
         <a href="/store/create" class="text-gray-900 text-decoration-none"> 
             <i class="fas fa-plus p-1" style="background-color: red; color: white; border-radius: 5px"></i>
             Add New Store
@@ -42,12 +42,17 @@
                         <td>{{ $store->address }}</td>
                         <td class="d-flex flex-row justify-content-around">
                             <div>
-                                <a href="/store/{{ $store->id }}/edit" class="btn btn-success btn-rectangle">
+                                <a href="/store/{{ $store->id }}" class="btn-sm btn-primary btn-rectangle">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </div>
+                            <div style="margin-left: 10px">
+                                <a href="/store/{{ $store->id }}/edit" class="btn-sm btn-success btn-rectangle">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </div>
                             <div style="margin-left: 10px">
-                                <a class="btn btn-danger btn-rectangle" data-toggle="modal"
+                                <a class="btn-sm btn-danger btn-rectangle" data-toggle="modal"
                                     data-target="#myModal{{ $store->id }}">
                                     <i class="fas fa-trash"></i>
                                 </a>
@@ -61,7 +66,7 @@
                                             <img style="width: 200px; object-fit: contain" src="/img/trash.png"
                                                 alt="">
                                             <p class="mt-3 text-dark">Are you sure want to remove <span
-                                                    class="text-danger">{{ $store->merch_name }}</span>
+                                                    class="text-danger">{{ $store->store_name }}</span>
                                                 store?</p>
                                             <div class="mt-4 d-flex justify-content-around w-100">
                                                 <button type="button" class="btn btn-danger"

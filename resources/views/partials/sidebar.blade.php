@@ -31,15 +31,15 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item {{ ($active === "merchandise") ? 'active' : '' }}">
                 <a class="nav-link" href="/merchandise">
-                    <i class="fas fa-fw fa-shop"></i>
-                    <span>Create Merchandise</span></a>
+                    <i class="fas fa-fw fa-gift"></i>
+                    <span>Merchandise</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item {{ ($active === "store") ? 'active' : '' }}">
                 <a class="nav-link" href="/store">
                     <i class="fas fa-fw fa-store"></i>
-                    <span>Create Store</span></a>
+                    <span>Store</span></a>
             </li>
             <!-- Nav Item - Charts -->
             <li class="nav-item">
@@ -48,12 +48,6 @@
                     <span>Transaction</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Store Stock</span></a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

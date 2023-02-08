@@ -13,4 +13,8 @@ class Store extends Model
     public function author(){
         return $this->belongsTo(User::class);
     }
+    public function storeStock()
+    {
+        return $this->hasMany(StoreStock::class);
+    }
 }

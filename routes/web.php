@@ -3,8 +3,9 @@
 use App\Http\Controllers\MerchandiseController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RealStockStatus;
+use App\Http\Controllers\RealStockStatusController;
 use App\Http\Controllers\RealtimeStatusController;
+use App\Http\Controllers\StoreStockController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('realstock/edit/{id}', [RealStockStatus::class, 'edit'])->middleware('auth'); //route untuk ke halaman edit data
-Route::put('realstock/update/{id}', [RealStockStatus::class, 'update'])->middleware('auth'); //route untuk mengupdate data ke database
-Route::post('realstock/update/{id}', [RealStockStatus::class, 'update'])->middleware('auth'); //route untuk mengupdate data ke database
+Route::get('realstock/edit/{id}', [RealStockStatusController::class, 'edit'])->middleware('auth'); //route untuk ke halaman edit data
+Route::put('realstock/update/{id}', [RealStockStatusController::class, 'update'])->middleware('auth'); //route untuk mengupdate data ke database
+Route::post('realstock/update/{id}', [RealStockStatusController::class, 'update'])->middleware('auth'); //route untuk mengupdate data ke database
 
 Route::get('/', [UserController::class, 'index'])->name('index')->middleware(('auth'));
 Route::get('/data-of-user', [UserController::class, 'show'])->middleware(('superUser'));
@@ -30,7 +31,17 @@ Route::resource('/realStock', RealtimeStatusController::class)->middleware('auth
 Route::put('/realStock', [RealtimeStatusController::class, 'update']);
 
 Route::resource('/merchandise', MerchandiseController::class)->middleware('auth');
+
 Route::resource('/store', StoreController::class)->middleware('auth');
+// Route::resource('/store/store-stock', StoreStockController::class)->middleware('auth');
+Route::get('/store/store-stock/create/{idStore}', [StoreStockController::class, 'create'])->middleware('auth');
+Route::post('/store/store-stock/store/{idStore}', [StoreStockController::class, 'store'])->middleware('auth');
+Route::get('/store/store-stock/edit/{idStoreStock}/{idStore}', [StoreStockController::class, 'edit'])->middleware('auth');
+Route::put('/store/store-stock/update/{idStoreStock}/{idStore}', [StoreStockController::class, 'update'])->middleware('auth');
+Route::post('/store/store-stock/update/{idStoreStock}/{idStore}', [StoreStockController::class, 'update'])->middleware('auth');
+Route::delete('/store/store-stock/destroy/{idStoreStock}/{idStore}', [StoreStockController::class, 'destroy'])->middleware('auth');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

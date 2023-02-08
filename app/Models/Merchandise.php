@@ -14,4 +14,8 @@ class Merchandise extends Model
     {
         return $this->hasOne(RealtimeStatus::class);
     }
+    public function storeStock()
+    {
+        return $this->hasMany(StoreStock::class);
+    }
 }

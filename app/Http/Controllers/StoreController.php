@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Store;
 use App\Http\Requests\StoreStoreRequest;
 use App\Http\Requests\UpdateStoreRequest;
+use App\Models\StoreStock;
 
 class StoreController extends Controller
 {
@@ -62,7 +63,16 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
-        //
+        // dd($store);
+        $data = [
+            'store_name' => $store->store_name,
+            'store_id' => $store->id,
+            'store_stock' => StoreStock::where('id_store' , '=' , $store->id)->join('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name')->latest()->get(),
+            'page' => 'Store |',
+            'active' => 'store'
+        ];
+        // dd($data);
+        return view('pages.storeStock',$data);
     }
 
     /**
@@ -108,6 +118,10 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
-        //
+        // dd($store);
+        StoreStock::where('id_store', '=' ,$store->id)->delete();
+        Store::destroy($store->id);
+        return redirect('/store')->with('success', 'Store has been deleted!');
+
     }
 }

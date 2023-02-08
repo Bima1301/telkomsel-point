@@ -15,7 +15,7 @@
         @csrf
         <div class="form-group">
             <label for="Store Name">Store Name <span style="color: red">*</span></label>
-            <input type="text" class="form-control @error('store_name') is-invalid @enderror" id="store_name" name="store_name">
+            <input type="text" class="form-control @error('store_name') is-invalid @enderror" id="store_name" name="store_name" value="{{ old('store_name') }}">
             @error('store_name')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
             <label for="address">Address <span style="color: red">*</span></label>
-            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address">
+            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
             @error('address')
             <div class="invalid-feedback">
                 {{ $message }}

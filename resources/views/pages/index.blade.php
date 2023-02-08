@@ -1,7 +1,14 @@
 @include('partials.head')
 @include('partials.sidebar')
 @include('partials.navbar')
-
+@if (session()->has('success'))
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <strong>Success ! </strong>{{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800 font-weight-bold">Dashboard</h1>
                     <!-- DataTales Example -->
@@ -35,8 +42,8 @@
                                                     </a>
                                                 </div>
                                             </td>
-                                            <td class="text-center">{{ $rs->stock_out }}</td>
-                                            <td class="text-center">{{ $rs->remaining_stock }}</td>
+                                            <td class="text-center">{{ $rs->stock_out  }}</td>
+                                            <td class="text-center">{{ ($rs->stock_in) - ($rs->stock_out)}}</td>
                                         </tr>
                                         @endforeach
                                         

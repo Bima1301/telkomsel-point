@@ -66,12 +66,12 @@ class RealtimeStatusController extends Controller
     public function edit(RealtimeStatus $realtimeStatus)
     {
         // dd($realtimeStatus->stock_in);
-        $data = [
-            'realtime_status' => $realtimeStatus,
-            'page' => '',
-            'active' => 'dashboard'
-        ];
-        return view('pages.realtimeStock.edit',$data);
+        // $data = [
+        //     'realtime_status' => $realtimeStatus,
+        //     'page' => '',
+        //     'active' => 'dashboard'
+        // ];
+        // return view('pages.realtimeStock.edit',$data);
     }
 
     /**
@@ -83,10 +83,13 @@ class RealtimeStatusController extends Controller
      */
     public function update(UpdateRealtimeStatusRequest $request, RealtimeStatus $realtimeStatus)
     {
-        RealtimeStatus::where('id',$realtimeStatus->id)->update([
-            'stock_in' => $request->stock_in,
-        ]);
-    return redirect('/')->with('success', 'Merchandise has been updated!');
+    //     dd($request);
+    //     $rules = [
+    //         'stock_in' => 'required',
+    //     ];
+    //     $validatedData = $request->validate($rules);
+    //     RealtimeStatus::where('id',$realtimeStatus->id)->update($validatedData);
+    // return redirect('/')->with('success', 'Merchandise has been updated!');
     }
 
     /**

@@ -24,7 +24,7 @@ class UpdateRealtimeStatusRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'stock_in' => 'required|numeric|integer|min:0'
         ];
     }
 }

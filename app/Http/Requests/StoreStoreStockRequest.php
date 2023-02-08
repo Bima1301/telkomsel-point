@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRealtimeStatusRequest extends FormRequest
+class StoreStoreStockRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,11 @@ class StoreRealtimeStatusRequest extends FormRequest
     public function rules()
     {
         return [
-            'stock_in' => 'required|numeric|integer|min:0'
+            'merch_name' => 'required|max:255',
+            'keyword' => 'required|max:255',
+            'verification_keyword' => 'max:255',
+            'image' => 'required|image|file|max:1024',
+            'minimal_point' => 'required|numeric|min:0'
         ];
     }
 }

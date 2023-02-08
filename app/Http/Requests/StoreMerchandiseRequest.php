@@ -28,7 +28,7 @@ class StoreMerchandiseRequest extends FormRequest
             'keyword' => 'required|max:255',
             'verification_keyword' => 'max:255',
             'image' => 'required|image|file|max:1024',
-            'minimal_point' => 'required'
+            'minimal_point' => 'required|numeric|integer|min:0'
         ];
     }
 }
