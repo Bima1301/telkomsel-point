@@ -22,11 +22,15 @@ class UserController extends Controller
         $data = [
             'page' => '',
             'active' => 'dashboard',
-            'users' => User::latest()->get()
+            'users' => User::where('id', '!=', auth()->user()->id)->latest()->get()
         ];
         return view('pages.user.show',$data);
     }
-    public function edit(){
-        
+    public function update(Request $request,$user_id){
+        // dd($user_id); 
+          User::where('id', '=' , $user_id)->update([
+            'role' => $request->role
+          ]);
+          return redirect()->back()->with('success', 'Role user has been changed!');
     }
 }

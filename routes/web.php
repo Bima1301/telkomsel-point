@@ -26,6 +26,7 @@ Route::post('realstock/update/{id}', [RealStockStatusController::class, 'update'
 
 Route::get('/', [UserController::class, 'index'])->name('index')->middleware(('auth'));
 Route::get('/data-of-user', [UserController::class, 'show'])->middleware(('superUser'));
+Route::post('/data-of-user/update/{idUser}', [UserController::class, 'update'])->middleware(('superUser'));
 
 Route::resource('/realStock', RealtimeStatusController::class)->middleware('auth');
 Route::put('/realStock', [RealtimeStatusController::class, 'update']);

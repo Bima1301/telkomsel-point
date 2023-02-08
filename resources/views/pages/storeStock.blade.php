@@ -11,8 +11,18 @@
 @endif
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-danger font-weight-bold">{{ $store_name }}</h1>
-<p class="mb-4">Stock that you have created will be displayed in the table below</p>
+<div class="d-flex flex-lg-row flex-column align-items-center justify-content-between">
+<div>
+    <h1 class="h3 mb-2 text-danger font-weight-bold">{{ $store_name }}</h1>
+    <p class="mb-4">Store Stock that you have created will be displayed in the table below</p>
+</div>
+<a href="/store" class="btn btn-secondary btn-icon-split mb-3 btn-sm" style="height: fit-content">
+    <span class="icon text-white-50">
+        <i class="fas fa-arrow-left"></i>
+    </span>
+    <span class="text">Back to Store</span>
+</a>
+</div>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -77,8 +87,7 @@
                                                         class="d-inline">
                                                         @method('delete')
                                                         @csrf
-                                                        <button type="submit" class="btn border-danger">Save
-                                                            changes</button>
+                                                        <button type="submit" class="btn border-danger">Remove</button>
                                                     </form>
                                                 </div>
                                             </div>

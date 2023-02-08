@@ -80,8 +80,7 @@
                                                         class="d-inline">
                                                         @method('delete')
                                                         @csrf
-                                                        <button type="submit" class="btn border-danger">Save
-                                                            changes</button>
+                                                        <button type="submit" class="btn border-danger">Remove</button>
                                                     </form>
                                                 </div>
                                             </div>
