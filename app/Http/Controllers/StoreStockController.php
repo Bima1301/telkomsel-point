@@ -38,6 +38,7 @@ class StoreStockController extends Controller
         $validatedData = $request->validate($rules);
         $validatedData['id_store'] = $id;
         $validatedData['stock_out'] = 0;
+        $validatedData['user_id'] = auth()->user()->id;
         $storeStock = StoreStock::create($validatedData);
 
         
@@ -86,6 +87,7 @@ class StoreStockController extends Controller
         $validatedData = $request->validate($rules);
         $validatedData['id_store'] = $idStore;
         $validatedData['stock_out'] = 0;
+        $validatedData['user_id'] = auth()->user()->id;
         // $storeStock = StoreStock::create($validatedData);
         StoreStock::where('id',$idStoreStock)->update($validatedData);
         

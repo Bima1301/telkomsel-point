@@ -24,7 +24,10 @@
                         <th>No</th>
                         <th>Merchandise</th>
                         <th>Stock In</th>
+                        @can('superUser')
                         <th>Add Stock</th>
+                        @endcan
+
                         <th>Stock Out</th>
                         <th>Remaining Stock</th>
                     </tr>
@@ -35,6 +38,7 @@
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $rs->merch_name }}</td>
                             <td class="text-center">{{ $rs->stock_in }}</td>
+                            @can('superUser')
                             <td class="d-flex justify-content-center">
                                 <div>
                                     <a id="create_modal" class="btn-sm btn-success btn-rectangle" data-toggle="modal"
@@ -85,6 +89,7 @@
 
 
                             </td>
+                            @endcan
                             <td class="text-center">{{ $rs->stock_out }}</td>
                             <td class="text-center">{{ $rs->stock_in - $rs->stock_out }}</td>
                         </tr>

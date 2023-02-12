@@ -18,4 +18,7 @@ class StoreStock extends Model
     {
         return $this->belongsTo(Store::class, 'id_store');
     }
+    public function author(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

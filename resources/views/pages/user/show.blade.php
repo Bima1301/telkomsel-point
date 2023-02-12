@@ -63,8 +63,8 @@
                                                                 <label for="">Change Role For : <span class="text-danger">{{ $user->name }}</span></label>
                                                                 <select class="form-control" name="role" id="role">
                                                                     <option value="basicUser">Basic User</option>
-                                                                    <option value="smallUser">Small User</option>
-                                                                    <option value="middleUser">Middle User</option>
+                                                                    <option value="CS">CS</option>
+                                                                    <option value="PIC">PIC</option>
                                                                   </select>
                                                               </div>
                                                               <div class="modal-footer">

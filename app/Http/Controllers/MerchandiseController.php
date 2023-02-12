@@ -33,6 +33,7 @@ class MerchandiseController extends Controller
      */
     public function create()
     {
+        $this->authorize('superUser');
         $data = [
             'page' => 'Merchandise |',
             'active' => 'merchandise'
@@ -48,6 +49,7 @@ class MerchandiseController extends Controller
      */
     public function store(StoreMerchandiseRequest $request)
     {
+        $this->authorize('superUser');
         // $validatedData = $request->validate([
         //     'merch_name' => 'required|max:255',
         //     'keyword' => 'required|max:255',
@@ -95,6 +97,7 @@ class MerchandiseController extends Controller
      */
     public function edit(Merchandise $merchandise)
     {
+        $this->authorize('superUser');
         $data = [
             'merch' => $merchandise,
             'page' => 'Merchandise |',
@@ -112,6 +115,7 @@ class MerchandiseController extends Controller
      */
     public function update(UpdateMerchandiseRequest $request, Merchandise $merchandise)
     {
+        $this->authorize('superUser');
         // dd($request);
         // $isImage = $request->file('image')->store('merch-image');
         // dd($request);
@@ -141,6 +145,7 @@ class MerchandiseController extends Controller
      */
     public function destroy(Merchandise $merchandise)
     {
+        $this->authorize('superUser');
         // dd($merchandise);
         if ($merchandise->image) {
             Storage::delete($merchandise->image);

@@ -31,6 +31,7 @@ class StoreController extends Controller
      */
     public function create()
     {
+        $this->authorize('superUser');
         $data = [
             'page' => 'Store |',
             'active' => 'store'
@@ -46,6 +47,7 @@ class StoreController extends Controller
      */
     public function store(StoreStoreRequest $request)
     {
+        $this->authorize('superUser');
         Store::create([
             'user_id' => auth()->user()->id,
             'store_name' => $request->store_name,
@@ -67,7 +69,7 @@ class StoreController extends Controller
         $data = [
             'store_name' => $store->store_name,
             'store_id' => $store->id,
-            'store_stock' => StoreStock::where('id_store' , '=' , $store->id)->join('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name')->latest()->get(),
+            'store_stock' => StoreStock::where([['id_store' , '=' , $store->id], ['user_id' ,'=' , auth()->user()->id]])->join('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name')->latest()->get(),
             'page' => 'Store |',
             'active' => 'store'
         ];
@@ -83,6 +85,7 @@ class StoreController extends Controller
      */
     public function edit(Store $store)
     {
+        $this->authorize('superUser');
         // dd($store);
         $data = [
             'store' => $store,
@@ -101,6 +104,7 @@ class StoreController extends Controller
      */
     public function update(UpdateStoreRequest $request, Store $store)
     {
+        $this->authorize('superUser');
         Store::where('id',$store->id)->update([
             'user_id' => auth()->user()->id,
             'store_name' => $request->store_name,
@@ -118,6 +122,7 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
+        $this->authorize('superUser');
         // dd($store);
         StoreStock::where('id_store', '=' ,$store->id)->delete();
         Store::destroy($store->id);

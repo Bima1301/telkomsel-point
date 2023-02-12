@@ -18,12 +18,13 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row justify-content-between">
         <h6 class="m-0 font-weight-bold text-danger">Store Data Table</h6>
+        @can('superUser')
         <button style="background-color: transparent; border: none" id="create_modal" class="text-gray-900 text-decoration-none" data-toggle="modal"
             data-target="#myModalCreateStore">
             <i class="fas fa-plus p-1" style="background-color: red; color: white; border-radius: 5px"></i>
             Add New Store
         </button>
-
+        @endcan
 
         <!-- ModalNEw Store -->
         <div class="modal fade" id="myModalCreateStore" tabindex="-1" role="dialog" aria-labelledby="myModalTitle"
@@ -94,6 +95,7 @@
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </div>
+                                @can('superUser')
                                 <div style="margin-left: 10px">
                                     <a href="/store/{{ $store->id }}/edit" class="btn-sm btn-success btn-rectangle">
                                         <i class="fas fa-edit"></i>
@@ -105,7 +107,8 @@
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </div>
-                                <!-- Modal -->
+                                
+                                <!-- Modal Delete -->
                                 <div class="modal fade" id="myModal{{ $store->id }}" tabindex="-1" role="dialog"
                                     aria-labelledby="myModalTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -131,6 +134,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

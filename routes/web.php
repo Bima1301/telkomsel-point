@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('realstock/edit/{id}', [RealStockStatusController::class, 'edit'])->middleware('auth'); //route untuk ke halaman edit data
-Route::put('realstock/update/{id}', [RealStockStatusController::class, 'update'])->middleware('auth'); //route untuk mengupdate data ke database
-Route::post('realstock/update/{id}', [RealStockStatusController::class, 'update'])->middleware('auth'); //route untuk mengupdate data ke database
+Route::get('realstock/edit/{id}', [RealStockStatusController::class, 'edit'])->middleware(('superUser')); //route untuk ke halaman edit data
+Route::put('realstock/update/{id}', [RealStockStatusController::class, 'update'])->middleware(('superUser')); //route untuk mengupdate data ke database
+Route::post('realstock/update/{id}', [RealStockStatusController::class, 'update'])->middleware(('superUser')); //route untuk mengupdate data ke database
 
 Route::get('/', [UserController::class, 'index'])->name('index')->middleware(('auth'));
 Route::get('/data-of-user', [UserController::class, 'show'])->middleware(('superUser'));
