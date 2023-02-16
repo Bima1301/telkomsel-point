@@ -20,7 +20,7 @@
     <span class="icon text-white-50">
         <i class="fas fa-arrow-left"></i>
     </span>
-    <span class="text">Back to Store</span>
+    <span class="text">Back to Store List</span>
 </a>
 </div>
 
@@ -28,10 +28,12 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row justify-content-between">
         <h6 class="m-0 font-weight-bold text-danger">{{ $store_name }} Stock Data Table</h6>
+        @canany(['superUser', 'PIC'])
         <a href="/store/store-stock/create/{{ $store_id }}" class="text-gray-900 text-decoration-none">
             <i class="fas fa-plus p-1" style="background-color: red; color: white; border-radius: 5px"></i>
             Add New Stock
         </a>
+        @endcanany
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -43,6 +45,7 @@
                         <th>Merchandise</th>
                         <th>Stock In</th>
                         <th>Stock Out</th>
+                        <th>Remaining Stock</th>
                         <th>PIC</th>
                         <th>Setting</th>
                     </tr>
@@ -55,6 +58,7 @@
                             <td>{{ $s_stock->merch_name }} </td>
                             <td>{{ $s_stock->stock_in }} </td>
                             <td>{{ $s_stock->stock_out }} </td>
+                            <td>{{ $s_stock->stock_in - $s_stock->stock_out }}</td>
                             <td>{{ $s_stock->PIC }} </td>
                             <td class="d-flex flex-row justify-content-around">
                                 <div>
@@ -63,6 +67,7 @@
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </div>
+                                @if ($s_stock->stock_out == 0)
                                 <div>
                                     <a  data-toggle="modal" data-target="#myModal{{ $s_stock->id }}"
                                         class="btn-sm btn-danger btn-rectangle">
@@ -94,6 +99,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                @endif
                             </td>
                         </tr>
                     @endforeach

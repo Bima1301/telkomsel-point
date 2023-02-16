@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class MiddleUser
+class PIC
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class MiddleUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check() || ((auth()->user()->role !== 'superUser') && (auth()->user()->role !== 'PIC') )){
+        if(!auth()->check() || auth()->user()->role !== 'PIC'){
             abort(403);
         }
         return $next($request);

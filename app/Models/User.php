@@ -49,4 +49,10 @@ class User extends Authenticatable
     public function storeStocks(){
         return $this->hasMany(StoreStock::class);
     }
+    public function transactions(){
+        return $this->hasMany(Transaction::class);
+    }
+    public function storePosition(){
+        return $this->belongsTo(Store::class, 'id_store_position');
+    }
 }

@@ -11,20 +11,13 @@
 @endif
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-danger font-weight-bold">Store</h1>
-<p class="mb-4">Store that you have created will be displayed in the table below</p>
+<h1 class="h3 mb-2 text-danger font-weight-bold">Transaction</h1>
+<p class="mb-4">Please choose the store to create new transaction</p>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row justify-content-between">
-        <h6 class="m-0 font-weight-bold text-danger">Store Data Table</h6>
-        @can('superUser')
-        <button style="background-color: transparent; border: none" id="create_modal" class="text-gray-900 text-decoration-none" data-toggle="modal"
-            data-target="#myModalCreateStore">
-            <i class="fas fa-plus p-1" style="background-color: red; color: white; border-radius: 5px"></i>
-            Add New Store
-        </button>
-        @endcan
+        <h6 class="m-0 font-weight-bold text-danger">Store Table</h6>
 
         <!-- ModalNEw Store -->
         <div class="modal fade" id="myModalCreateStore" tabindex="-1" role="dialog" aria-labelledby="myModalTitle"
@@ -80,9 +73,7 @@
                         <th>No</th>
                         <th>Store Name</th>
                         <th>Address</th>
-                        @canany(['superUser', 'PIC'])
                         <th>Setting</th>
-                        @endcanany
                     </tr>
                 </thead>
                 <tbody>
@@ -91,55 +82,14 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $store->store_name }}</td>
                             <td>{{ $store->address }}</td>
-                            @canany(['superUser', 'PIC'])
-                            <td class="d-flex flex-row justify-content-around">
-                                <div>
-                                    <a href="/store/{{ $store->id }}" class="btn-sm btn-primary btn-rectangle">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                </div>
-                                @can('superUser')
-                                <div style="margin-left: 10px">
-                                    <a href="/store/{{ $store->id }}/edit" class="btn-sm btn-success btn-rectangle">
+                            <td>
+                                <a href="/transaction/store-id/{{ $store->id }}" class="btn btn-primary btn-icon-split btn-sm">
+                                    <span class="icon text-white-50">
                                         <i class="fas fa-edit"></i>
-                                    </a>
-                                </div>
-                                <div style="margin-left: 10px">
-                                    <a class="btn-sm btn-danger btn-rectangle" data-toggle="modal"
-                                        data-target="#myModal{{ $store->id }}">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </div>
-                                
-                                <!-- Modal Delete -->
-                                <div class="modal fade" id="myModal{{ $store->id }}" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body d-flex flex-column align-items-center">
-                                                <img style="width: 200px; object-fit: contain" src="/img/trash.png"
-                                                    alt="">
-                                                <p class="mt-3 text-dark">Are you sure want to remove <span
-                                                        class="text-danger">{{ $store->store_name }}</span>
-                                                    store?</p>
-                                                <div class="mt-4 d-flex justify-content-around w-100">
-                                                    <button type="button" class="btn btn-danger"
-                                                        data-dismiss="modal">Cancel</button>
-                                                    <form action="/store/{{ $store->id }}" method="post"
-                                                        class="d-inline">
-                                                        @method('delete')
-                                                        @csrf
-                                                        <button type="submit"
-                                                            class="btn border-danger">Remove</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endcan
+                                    </span>
+                                    <span style="width: 150px"  class="text">Add Transaction</span>
+                                </a>
                             </td>
-                            @endcanany
                         </tr>
                     @endforeach
                 </tbody>
@@ -150,10 +100,3 @@
 
 @include('partials.foot')
 @include('partials.footer')
-<script>
-    @if (count($errors) > 0)
-        $(document).ready(function() {
-            $('#create_modal').trigger('click');
-        });
-    @endif
-</script>

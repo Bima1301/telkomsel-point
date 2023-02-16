@@ -16,12 +16,17 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $data = [
-            'stores' => Store::latest()->get(),
-            'page' => 'Store |',
-            'active' => 'store'
-        ];
-        return view('pages.store',$data);
+        if (auth()->user()->role == 'superUser') {
+            # code...
+            $data = [
+                'stores' => Store::latest()->get(),
+                'page' => 'Store |',
+                'active' => 'store'
+            ];
+            return view('pages.store',$data);
+        } else {
+           return redirect()->back();
+        }
     }
 
     /**
@@ -65,14 +70,34 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
+        // $this->authorizeEither('superUser', 'PIC');
+
+        // if((auth()->user()->role !== 'superUser') && (auth()->user()->role !== 'PIC') ){
+        //     abort(403);
+        // }
         // dd($store);
-        $data = [
-            'store_name' => $store->store_name,
-            'store_id' => $store->id,
-            'store_stock' => StoreStock::where([['id_store' , '=' , $store->id], ['user_id' ,'=' , auth()->user()->id]])->join('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name')->latest()->get(),
-            'page' => 'Store |',
-            'active' => 'store'
-        ];
+        if (auth()->user()->role !== 'superUser') {
+            if (auth()->user()->id_store_position !== $store->id) {
+                return redirect()->back();
+            } else {
+                $data = [
+                    'store_name' => $store->store_name,
+                    'store_id' => $store->id,
+                    'store_stock' => StoreStock::where('id_store' , '=' , $store->id)->join('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name')->latest()->get(),
+                    'page' => 'Store |',
+                    'active' => 'store'
+                ];
+            }
+        } else {
+            $data = [
+                'store_name' => $store->store_name,
+                'store_id' => $store->id,
+                'store_stock' => StoreStock::where('id_store' , '=' , $store->id)->join('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name')->latest()->get(),
+                'page' => 'Store |',
+                'active' => 'store'
+            ];
+        }
+        
         // dd($data);
         return view('pages.storeStock',$data);
     }
@@ -122,7 +147,9 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
-        $this->authorize('superUser');
+        if((auth()->user()->role !== 'superUser') && (auth()->user()->role !== 'PIC') ){
+            abort(403);
+        }
         // dd($store);
         StoreStock::where('id_store', '=' ,$store->id)->delete();
         Store::destroy($store->id);

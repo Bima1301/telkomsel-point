@@ -30,7 +30,8 @@ class StoreStockController extends Controller
         $StockOutLama=Merchandise::where('merchandises.id', '=', $request->id_merchandise)->join('realtime_statuses', 'merchandises.realtime_status_id', '=', 'realtime_statuses.id')->first(); 
         // dd($StockOutLama);
         $rules = [
-            'id_merchandise' => ['required', Rule::unique('store_stocks', 'id_merchandise')->where(fn ($query) => $query->where('id_store', $id))],
+            // 'id_merchandise' => ['required', Rule::unique('store_stocks', 'id_merchandise')->where(fn ($query) => $query->where('id_store', $id))],
+            'id_merchandise' => 'required',
             'date' => ['required'],
             'stock_in' => 'required|numeric|integer|min:0',
             'PIC' => 'required|max:255'
@@ -102,8 +103,25 @@ class StoreStockController extends Controller
         return redirect()->route('store.show', [$idStore])->with('success', 'Store stock has been updated!');
     }
     public function destroy($idStoreStock,$idStore)
-    {
+    {   
+        $store_stock = StoreStock::where('id', '=' , $idStoreStock)->first();
+        // dd($id_merchandise->id_merchandise);
+        $StockOutLama=Merchandise::where('merchandises.id', '=', $store_stock->id_merchandise)->join('realtime_statuses', 'merchandises.realtime_status_id', '=', 'realtime_statuses.id')->first(); 
+        $stock_out_old = $StockOutLama->stock_out; // DATA STOCK OUT SEBELUM
+
+        
+        $remaining_stock = $store_stock->stock_in - $store_stock->stock_out;
+        
+        $new_stock_out = $stock_out_old - $remaining_stock;
+
+        RealtimeStatus::where('id',$StockOutLama->realtime_status_id)->update([
+            'stock_out' => $new_stock_out
+        ]);
+
+
+
         StoreStock::destroy($idStoreStock);
+        
         return redirect()->route('store.show', [$idStore])->with('success', 'Store stock has been deleted!');
 
 

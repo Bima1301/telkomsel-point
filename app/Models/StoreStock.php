@@ -21,4 +21,7 @@ class StoreStock extends Model
     public function author(){
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function transactions(){
+        return $this->hasMany(Transaction::class);
+    }
 }

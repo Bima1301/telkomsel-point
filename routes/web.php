@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RealStockStatusController;
 use App\Http\Controllers\RealtimeStatusController;
 use App\Http\Controllers\StoreStockController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,14 +36,18 @@ Route::resource('/merchandise', MerchandiseController::class)->middleware('auth'
 
 Route::resource('/store', StoreController::class)->middleware('auth');
 // Route::resource('/store/store-stock', StoreStockController::class)->middleware('auth');
-Route::get('/store/store-stock/create/{idStore}', [StoreStockController::class, 'create'])->middleware('auth');
-Route::post('/store/store-stock/store/{idStore}', [StoreStockController::class, 'store'])->middleware('auth');
-Route::get('/store/store-stock/edit/{idStoreStock}/{idStore}', [StoreStockController::class, 'edit'])->middleware('auth');
-Route::put('/store/store-stock/update/{idStoreStock}/{idStore}', [StoreStockController::class, 'update'])->middleware('auth');
-Route::post('/store/store-stock/update/{idStoreStock}/{idStore}', [StoreStockController::class, 'update'])->middleware('auth');
-Route::delete('/store/store-stock/destroy/{idStoreStock}/{idStore}', [StoreStockController::class, 'destroy'])->middleware('auth');
 
+Route::get('/store/store-stock/create/{idStore}', [StoreStockController::class, 'create'])->middleware('middleUser');
+Route::post('/store/store-stock/store/{idStore}', [StoreStockController::class, 'store'])->middleware('middleUser');
+Route::get('/store/store-stock/edit/{idStoreStock}/{idStore}', [StoreStockController::class, 'edit'])->middleware('middleUser');
+Route::put('/store/store-stock/update/{idStoreStock}/{idStore}', [StoreStockController::class, 'update'])->middleware('middleUser');
+Route::post('/store/store-stock/update/{idStoreStock}/{idStore}', [StoreStockController::class, 'update'])->middleware('middleUser');
+Route::delete('/store/store-stock/destroy/{idStoreStock}/{idStore}', [StoreStockController::class, 'destroy'])->middleware('middleUser');
 
+Route::resource('/transaction', TransactionController::class)->middleware('auth');
+Route::get('/transaction/store-id/{idStore}', [TransactionController::class, 'createWithStore'])->name('transaction.store.show')->middleware('auth');
+Route::get('/transaction/store-id/{idStore}/create', [TransactionController::class, 'create'])->middleware('auth');
+Route::post('/transaction/store-id/{idStore}/store', [TransactionController::class, 'store'])->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

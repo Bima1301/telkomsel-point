@@ -37,12 +37,12 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Select <span class="text-danger">"Logout"</span> below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button class="btn btn-primary" type="submit">Logout</button>
+                    <button class="btn btn-danger" type="submit">Logout</button>
                     </form>
                 </div>
             </div>

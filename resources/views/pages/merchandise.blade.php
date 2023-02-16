@@ -19,10 +19,10 @@
     <div class="card-header py-3 d-flex flex-row justify-content-between">
         <h6 class="m-0 font-weight-bold text-danger">Merchandise Data Table</h6>
         @can('superUser')
-        <a href="/merchandise/create" class="text-gray-900 text-decoration-none">
-            <i class="fas fa-plus p-1" style="background-color: red; color: white; border-radius: 5px"></i>
-            Add New Merchandise
-        </a>
+            <a href="/merchandise/create" class="text-gray-900 text-decoration-none">
+                <i class="fas fa-plus p-1" style="background-color: red; color: white; border-radius: 5px"></i>
+                Add New Merchandise
+            </a>
         @endcan
     </div>
     <div class="card-body">
@@ -46,9 +46,32 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $merchan->merch_name }}</td>
-                            <td>
-                                <img style=" width: 60px;object-fit: cover;" class="object-cover mb-3"
+                            <td data-toggle="modal" data-target="#exampleModalCenter{{ $merchan->merch_name }}" style="cursor: pointer">
+                                <img style=" width: 80px;object-fit: cover;" class="object-cover mb-3"
                                     src="{{ asset('storage/' . $merchan->image) }}" alt="">
+
+                                <!-- Modal Image Preview-->
+                                <div class="modal fade" id="exampleModalCenter{{ $merchan->merch_name }}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-danger font-weight-bold" id="exampleModalLongTitle">{{ $merchan->merch_name }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body d-flex justify-content-center">
+                                                <img src="{{ asset('storage/' . $merchan->image) }}" class="img-fluid col-md-10" alt="">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>{{ $merchan->keyword }}</td>
                             <td>{{ $merchan->verification_keyword }}</td>

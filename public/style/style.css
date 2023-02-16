@@ -39,3 +39,89 @@
     background-color: #e74a3b !important;
     border-color: #e74a3b;
 }
+
+/* COOL INPUT */
+:root {
+    --input-color: #99a3ba;
+    --input-border: #cdd9ed;
+    --input-background: #fff;
+    --input-placeholder: #cbd1dc;
+    --input-border-focus: rgba(128, 128, 128, 0.593);
+    --is-invalid : #ff0000;
+    --group-color: var(--input-color);
+    --group-border: var(--input-border);
+    --group-background: #eef4ff;
+    --group-color-focus: #fff;
+    --group-border-focus: var(--input-border-focus);
+    --group-background-focus: #e74a3b;
+}
+.new-form-field {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    color: var(--input-color);
+    border: 1px solid var(--input-border);
+    background: var(--input-background);
+    transition: border 0.3s ease;
+}
+.is-invalid {
+    border: 1px solid var(--is-invalid) !important; 
+}
+
+.new-form-field::placeholder {
+    color: var(--input-placeholder);
+}
+.new-form-field:focus {
+    outline: none;
+    border-color: var(--input-border-focus);
+}
+.new-form-group {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+.new-form-group > span, .new-form-group .new-form-field {
+    white-space: nowrap;
+    display: block;
+}
+.new-form-group > span:not(:first-child):not(:last-child), .new-form-group .new-form-field:not(:first-child):not(:last-child) {
+    border-radius: 0;
+}
+.new-form-group > span:first-child, .new-form-group .new-form-field:first-child {
+    border-radius: 6px 0 0 6px;
+}
+.new-form-group > span:last-child, .new-form-group .new-form-field:last-child {
+    border-radius: 0 6px 6px 0;
+}
+.new-form-group > span:not(:first-child), .new-form-group .new-form-field:not(:first-child) {
+    margin-left: -1px;
+}
+.new-form-group .new-form-field {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.new-form-group > span {
+    text-align: center;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 25px;
+    color: var(--group-color);
+    background: var(--group-background);
+    border: 1px solid var(--group-border);
+    transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+}
+.new-form-group:focus-within > span {
+    color: var(--group-color-focus);
+    background: var(--group-background-focus);
+    border-color: var(--group-border-focus);
+}

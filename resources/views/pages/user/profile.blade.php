@@ -38,7 +38,7 @@
                                     @enderror
                                     {{-- <x-input-error :messages="$errors->get('email')" class="mt-2 text-red" /> --}}
                                 </div>
-                                <button type="submit" class="btn btn-danger">Add</button>
+                                <button type="submit" class="btn btn-danger">Submit</button>
                             </form>
                         </div>
                     </div>
