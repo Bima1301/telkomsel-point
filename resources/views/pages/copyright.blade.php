@@ -15,7 +15,7 @@
         body {
             font-family: tahoma;
             height: 100%;
-            background-image: url(https://picsum.photos/g/2560/1600);
+            background-image: url(https://picsum.photos/g/1920/1080);
             background-size: cover;
             background-position: center;
             display: flex;
@@ -25,10 +25,15 @@
         .our-team {
             padding: 30px 0 40px;
             margin-bottom: 30px;
-            background-color: #f7f5ec;
+            background-color: #f7f5ecc0;
             text-align: center;
             overflow: hidden;
             position: relative;
+            transition: .5s
+        }
+        .our-team:hover{
+            background-color: #f7f5ec;
+
         }
 
         .our-team .picture {

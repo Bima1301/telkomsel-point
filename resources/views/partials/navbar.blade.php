@@ -12,7 +12,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <p class="mb-0 font-weight-bold navbar-judul">Telkomsel Malang Database Management</p>
+                    <p class="mb-0 font-weight-bold navbar-judul">Merchandise Inventory Branch Ngalam</p>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 

@@ -12,7 +12,7 @@
                         <span>Copyright &copy; 
                             <abbr title="Click This !" class="text-decoration-none">
                                 <a class="text-decoration-none text-danger font-weight-bold" href="/copyright">
-                                    Filkom Universitas Brawijaya 2020
+                                    FILKOM Universitas Brawijaya 2020
                                 </a>
                             </abbr>
                     </span>
