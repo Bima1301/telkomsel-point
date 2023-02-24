@@ -17,7 +17,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row justify-content-between">
-        <h6 class="m-0 font-weight-bold text-danger">Store Table</h6>
+        <h6 class="m-0 font-weight-bold text-danger">Store List Table</h6>
 
         <!-- ModalNEw Store -->
         <div class="modal fade" id="myModalCreateStore" tabindex="-1" role="dialog" aria-labelledby="myModalTitle"

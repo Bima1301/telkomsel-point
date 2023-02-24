@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TransactionExport;
 use App\Models\Transaction;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Models\Merchandise;
 use App\Models\Store;
 use App\Models\StoreStock;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransactionController extends Controller
 {
@@ -24,7 +26,7 @@ class TransactionController extends Controller
             'active' => 'transaction',
             'stores' => Store::latest()->get()
         ];
-        return view('pages.transaction',$data);
+        return view('pages.transaction', $data);
     }
 
     /**
@@ -39,24 +41,41 @@ class TransactionController extends Controller
             // 'stores' => Transaction::latest()->get(),
             'page' => 'Transaction |',
             'active' => 'transaction',
-            'store_stock' => StoreStock::where('id_store' , '=' , $id)->join('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name')->latest()->get(),
+            'store_stock' => StoreStock::where('id_store', '=', $id)->join('merchandises', 'store_stocks.id_merchandise', '=', 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name')->latest()->get(),
             'store_name' => Store::where('id', '=', $id)->first()
         ];
         // dd($data);
-        return view('pages.transaction.create',$data);
+        return view('pages.transaction.create', $data);
     }
     public function createWithStore($idStore)
     {
+        // dd(auth()->user()->id_store_position);
+        if (auth()->user()->role !== 'superUser') {
+            if (auth()->user()->id_store_position != $idStore) {
+                return redirect()->back();
+            } else {
+                $data = [
+                    // 'stores' => Transaction::latest()->get(),
+                    'page' => 'Transaction |',
+                    'active' => 'transaction',
+                    'store_name' => Store::where('id', '=', $idStore)->first(),
+                    'transaction' => Transaction::where('transactions.id_store', '=', $idStore)->join('store_stocks', 'transactions.id_store_stock', '=', 'store_stocks.id')->leftJoin('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('transactions.*', 'merchandises.*', 'store_stocks.date AS store_stock_date')->latest('transactions.created_at')->get()
+                ];
+                // dd($data);
+            }
+        } else {
+            $data = [
+                // 'stores' => Transaction::latest()->get(),
+                'page' => 'Transaction |',
+                'active' => 'transaction',
+                'store_name' => Store::where('id', '=', $idStore)->first(),
+                'transaction' => Transaction::where('transactions.id_store', '=', $idStore)->join('store_stocks', 'transactions.id_store_stock', '=', 'store_stocks.id')->leftJoin('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('transactions.*', 'merchandises.*', 'store_stocks.date AS store_stock_date')->latest('transactions.created_at')->get()
+            ];
+            
+        }
         // dd($id);
-        $data = [
-            // 'stores' => Transaction::latest()->get(),
-            'page' => 'Transaction |',
-            'active' => 'transaction',
-            'store_name' => Store::where('id', '=', $idStore)->first(),
-            'transaction' => Transaction::where('id_store', '=', $idStore)->join('merchandises' , 'transactions.id_merchandise' , '=' , 'merchandises.id')->latest('transactions.created_at')->get()
-        ];
         // dd($data);
-        return view('pages.transaction.index',$data);
+        return view('pages.transaction.index', $data);
     }
 
     /**
@@ -67,28 +86,40 @@ class TransactionController extends Controller
      */
     public function store(StoreTransactionRequest $request, $idStore)
     {
-        // dd($request);
+        
         $rules = [
             'date' => 'required',
             'msisdn' => 'required|numeric',
             'customer' => 'required|max:255',
-            'cs_name' => 'required|max:255'
+            'cs_name' => 'required|max:255',
+            'id_store_stock' => 'required'
         ];
+        // dd($request);
+        $get_stock_out_storeStock = StoreStock::where([['id_store', '=', $idStore], ['id', '=', $request->id_store_stock]])->first();
+        if (!$get_stock_out_storeStock ) {
+            // dd("stock habis");
+            return redirect()->back()->with('failed', 'Add stock for the store first !');
+        }
+        $new_stock_out_SS = ($get_stock_out_storeStock->stock_out) + 1;
+
+        if ($new_stock_out_SS > ($get_stock_out_storeStock->stock_in)  ) {
+            // dd("stock habis");
+            return redirect()->back()->with('failed', 'This merchandise is out of stock!');
+        }
         $validatedData = $request->validate($rules);
-        $validatedData['id_merchandise'] = $request->id_merchandise;
+        $validatedData['id_store_stock'] = $request->id_store_stock;
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['id_store'] = $idStore;
-        $get_stock_out_storeStock = StoreStock::where([ ['id_store', '=', $idStore], ['id_merchandise', '=', $request->id_merchandise] ])->first();
+        
 
-        $new_stock_out_SS = ($get_stock_out_storeStock->stock_out) + 1;
+        
         // dd($get_stock_out_storeStock);
 
         Transaction::create($validatedData);
-        StoreStock::where('id',$get_stock_out_storeStock->id)->update([
+        StoreStock::where('id', $get_stock_out_storeStock->id)->update([
             'stock_out' => $new_stock_out_SS
         ]);
         return redirect()->route('transaction.store.show', [$idStore])->with('success', 'Transaction has been added!');
-
     }
 
     /**
@@ -134,5 +165,15 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         //
+    }
+    public function exportCSV($idStore)
+    {
+        $store_name = Store::where('id', '=', $idStore)->first();
+        return Excel::download(new TransactionExport($idStore), $store_name->store_name . ' (' . date('j F, Y') . ').csv', \Maatwebsite\Excel\Excel::CSV);
+    }
+    public function exportExcel($idStore)
+    {
+        $store_name = Store::where('id', '=', $idStore)->first();
+        return Excel::download(new TransactionExport($idStore), $store_name->store_name . ' (' . date('j F, Y') . ').xlsx', \Maatwebsite\Excel\Excel::XLSX);
     }
 }

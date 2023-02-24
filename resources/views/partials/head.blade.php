@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>{{ $page }} Telkomsel Stock Points</title>
-    
+    <link rel="icon" type="image/x-icon" href="/img/telkomsel-icon.png">
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link

@@ -44,12 +44,13 @@ class UserController extends Controller
 
         if ($request->id_store_position) {
             // dd('ini posisi');
-            $cek_PIC = User::where('users.id_store_position', '=', $request->id_store_position)->join('stores', 'users.id_store_position', '=', 'stores.id')->first();
-          
+            
             $isPIC = User::where('id', '=', $user_id)->first('role');
             // dd($isPIC->role);
-
+            
             if ($isPIC->role == 'PIC') {
+                $cek_PIC = User::where([['users.id_store_position', '=', $request->id_store_position], ['users.role' , '=' , 'PIC']])->join('stores', 'users.id_store_position', '=', 'stores.id')->first();
+                // dd($cek_PIC);
                 if (!$cek_PIC) {
                     User::where('id', '=', $user_id)->update([
                         'id_store_position' => $request->id_store_position

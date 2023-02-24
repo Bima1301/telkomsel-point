@@ -1,6 +1,14 @@
 @include('partials.head')
 @include('partials.sidebar')
 @include('partials.navbar')
+@if (session()->has('failed'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Failed ! </strong>{{ session('failed') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Add Transaction for <span
@@ -55,13 +63,13 @@
             <div class="form-group">
                 <label for="Merchandise">Merchandise <span style="color: red">*</span></label>
                 <select onChange="this.selectedIndex;"
-                    class="form-control form-control-md @error('id_merchandise') is-invalid @enderror"
-                    name="id_merchandise" id="id_merchandise">
+                    class="form-control form-control-md @error('id_store_stock') is-invalid @enderror"
+                    name="id_store_stock" id="id_store_stock">
                     @foreach ($store_stock as $s_stock)
                         @if (old('id_merchandise') == $s_stock->id_merchandise)
-                            <option value={{ $s_stock->id_merchandise }} selected>{{ $s_stock->merch_name }} </option>
+                            <option value={{ $s_stock->id }} selected>{{ $s_stock->merch_name }} </option>
                         @else
-                            <option value={{ $s_stock->id_merchandise }}>{{ $s_stock->merch_name }} ( {{ date('j F, Y', strtotime($s_stock->date)) }}) </option>
+                            <option value={{ $s_stock->id }}>{{ $s_stock->merch_name }} ( {{ date('j F, Y', strtotime($s_stock->date)) }}) </option>
                         @endif
                     @endforeach
                 </select>

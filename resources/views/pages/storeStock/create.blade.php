@@ -1,6 +1,14 @@
 @include('partials.head')
 @include('partials.sidebar')
 @include('partials.navbar')
+@if (session()->has('failed'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Failed ! </strong>{{ session('failed') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Store Stock</h1>

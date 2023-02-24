@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('id_merchandise');
+            $table->foreignId('id_store_stock');
             $table->string('date');
             $table->string('msisdn');
             $table->string('customer');

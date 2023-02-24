@@ -12,16 +12,16 @@
 
 <!-- Page Heading -->
 <div class="d-flex flex-lg-row flex-column align-items-center justify-content-between">
-<div>
-    <h1 class="h3 mb-2 text-danger font-weight-bold">{{ $store_name }}</h1>
-    <p class="mb-4">Store Stock that you have created will be displayed in the table below</p>
-</div>
-<a href="/store" class="btn btn-secondary btn-icon-split mb-3 btn-sm" style="height: fit-content">
-    <span class="icon text-white-50">
-        <i class="fas fa-arrow-left"></i>
-    </span>
-    <span class="text">Back to Store List</span>
-</a>
+    <div>
+        <h1 class="h3 mb-2 text-danger font-weight-bold">{{ $store_name }}</h1>
+        <p class="mb-4">Store Stock that you have created will be displayed in the table below</p>
+    </div>
+    <a href="/store" class="btn btn-secondary btn-icon-split mb-3 btn-sm" style="height: fit-content">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-left"></i>
+        </span>
+        <span class="text">Back to Store List</span>
+    </a>
 </div>
 
 <!-- DataTales Example -->
@@ -29,10 +29,10 @@
     <div class="card-header py-3 d-flex flex-row justify-content-between">
         <h6 class="m-0 font-weight-bold text-danger">{{ $store_name }} Stock Data Table</h6>
         @canany(['superUser', 'PIC'])
-        <a href="/store/store-stock/create/{{ $store_id }}" class="text-gray-900 text-decoration-none">
-            <i class="fas fa-plus p-1" style="background-color: red; color: white; border-radius: 5px"></i>
-            Add New Stock
-        </a>
+            <a href="/store/store-stock/create/{{ $store_id }}" class="text-gray-900 text-decoration-none">
+                <i class="fas fa-plus p-1" style="background-color: red; color: white; border-radius: 5px"></i>
+                Add New Stock
+            </a>
         @endcanany
     </div>
     <div class="card-body">
@@ -47,7 +47,9 @@
                         <th>Stock Out</th>
                         <th>Remaining Stock</th>
                         <th>PIC</th>
+                        @canany(['superUser', 'PIC'])
                         <th>Setting</th>
+                        @endcanany
                     </tr>
                 </thead>
                 <tbody>
@@ -55,19 +57,46 @@
                         <tr>
                             <td>{{ $loop->iteration }} </td>
                             <td>{{ date('j F, Y', strtotime($s_stock->date)) }} </td>
-                            <td>{{ $s_stock->merch_name }} </td>
+                            <td data-toggle="modal" data-target="#exampleModalCenter{{ $s_stock->merch_name }}" style="cursor: pointer">
+                                {{ $s_stock->merch_name }} 
+                                <!-- Modal Image Preview-->
+                                <div class="modal fade" id="exampleModalCenter{{ $s_stock->merch_name }}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-danger font-weight-bold" id="exampleModalLongTitle">{{ $s_stock->merch_name }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body d-flex justify-content-center">
+                                                <img src="{{ asset('storage/' . $s_stock->image) }}" class="img-fluid col-md-10" alt="">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td>{{ $s_stock->stock_in }} </td>
                             <td>{{ $s_stock->stock_out }} </td>
                             <td>{{ $s_stock->stock_in - $s_stock->stock_out }}</td>
                             <td>{{ $s_stock->PIC }} </td>
+                            @canany(['superUser', 'PIC'])
                             <td class="d-flex flex-row justify-content-around">
-                                <div>
-                                    <a href="/store/store-stock/edit/{{ $s_stock->id }}/{{ $store_id }}"
-                                        class="btn-sm btn-success btn-rectangle">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </div>
-                                @if ($s_stock->stock_out == 0)
+                                
+                                    <div>
+                                        <a href="/store/store-stock/edit/{{ $s_stock->id }}/{{ $store_id }}"
+                                            class="btn-sm btn-success btn-rectangle">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </div>
+                                
+                                {{-- @if ($s_stock->stock_out == 0)
                                 <div>
                                     <a  data-toggle="modal" data-target="#myModal{{ $s_stock->id }}"
                                         class="btn-sm btn-danger btn-rectangle">
@@ -100,8 +129,9 @@
                                     </div>
                                 </div>
 
-                                @endif
+                                @endif --}}
                             </td>
+                            @endcanany
                         </tr>
                     @endforeach
                 </tbody>

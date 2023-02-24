@@ -83,7 +83,7 @@ class StoreController extends Controller
                 $data = [
                     'store_name' => $store->store_name,
                     'store_id' => $store->id,
-                    'store_stock' => StoreStock::where('id_store' , '=' , $store->id)->join('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name')->latest()->get(),
+                    'store_stock' => StoreStock::where('id_store' , '=' , $store->id)->join('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name', 'merchandises.image')->latest()->get(),
                     'page' => 'Store |',
                     'active' => 'store'
                 ];
@@ -92,7 +92,7 @@ class StoreController extends Controller
             $data = [
                 'store_name' => $store->store_name,
                 'store_id' => $store->id,
-                'store_stock' => StoreStock::where('id_store' , '=' , $store->id)->join('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name')->latest()->get(),
+                'store_stock' => StoreStock::where('id_store' , '=' , $store->id)->join('merchandises', 'store_stocks.id_merchandise' , '=' , 'merchandises.id')->select('store_stocks.*', 'merchandises.merch_name', 'merchandises.image')->latest()->get(),
                 'page' => 'Store |',
                 'active' => 'store'
             ];
@@ -145,15 +145,15 @@ class StoreController extends Controller
      * @param  \App\Models\Store  $store
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Store $store)
-    {
-        if((auth()->user()->role !== 'superUser') && (auth()->user()->role !== 'PIC') ){
-            abort(403);
-        }
-        // dd($store);
-        StoreStock::where('id_store', '=' ,$store->id)->delete();
-        Store::destroy($store->id);
-        return redirect('/store')->with('success', 'Store has been deleted!');
+    // public function destroy(Store $store)
+    // {
+    //     if((auth()->user()->role !== 'superUser') && (auth()->user()->role !== 'PIC') ){
+    //         abort(403);
+    //     }
+    //     // dd($store);
+    //     StoreStock::where('id_store', '=' ,$store->id)->delete();
+    //     Store::destroy($store->id);
+    //     return redirect('/store')->with('success', 'Store has been deleted!');
 
-    }
+    // }
 }

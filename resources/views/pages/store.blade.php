@@ -17,7 +17,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row justify-content-between">
-        <h6 class="m-0 font-weight-bold text-danger">Store Data Table</h6>
+        <h6 class="m-0 font-weight-bold text-danger">Store List Table</h6>
         @can('superUser')
         <button style="background-color: transparent; border: none" id="create_modal" class="text-gray-900 text-decoration-none" data-toggle="modal"
             data-target="#myModalCreateStore">
@@ -104,7 +104,7 @@
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </div>
-                                <div style="margin-left: 10px">
+                                {{-- <div style="margin-left: 10px">
                                     <a class="btn-sm btn-danger btn-rectangle" data-toggle="modal"
                                         data-target="#myModal{{ $store->id }}">
                                         <i class="fas fa-trash"></i>
@@ -136,7 +136,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 @endcan
                             </td>
                             @endcanany

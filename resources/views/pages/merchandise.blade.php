@@ -85,7 +85,7 @@
                                         </a>
                                     </div>
 
-                                    <div>
+                                    {{-- <div>
                                         <a class="btn-sm btn-danger btn-rectangle" data-toggle="modal"
                                             data-target="#myModal{{ $merchan->id }}">
                                             <i class="fas fa-trash"></i>
@@ -115,7 +115,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </td>
                             @endcan
                         </tr>

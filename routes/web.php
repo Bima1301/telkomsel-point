@@ -42,12 +42,18 @@ Route::post('/store/store-stock/store/{idStore}', [StoreStockController::class, 
 Route::get('/store/store-stock/edit/{idStoreStock}/{idStore}', [StoreStockController::class, 'edit'])->middleware('middleUser');
 Route::put('/store/store-stock/update/{idStoreStock}/{idStore}', [StoreStockController::class, 'update'])->middleware('middleUser');
 Route::post('/store/store-stock/update/{idStoreStock}/{idStore}', [StoreStockController::class, 'update'])->middleware('middleUser');
-Route::delete('/store/store-stock/destroy/{idStoreStock}/{idStore}', [StoreStockController::class, 'destroy'])->middleware('middleUser');
+// Route::delete('/store/store-stock/destroy/{idStoreStock}/{idStore}', [StoreStockController::class, 'destroy'])->middleware('middleUser');
 
 Route::resource('/transaction', TransactionController::class)->middleware('auth');
 Route::get('/transaction/store-id/{idStore}', [TransactionController::class, 'createWithStore'])->name('transaction.store.show')->middleware('auth');
+Route::get('/transaction/store-id/{idStore}/exportCSV', [TransactionController::class, 'exportCSV'])->middleware('auth');
+Route::get('/transaction/store-id/{idStore}/exportExcel', [TransactionController::class, 'exportExcel'])->middleware('auth');
 Route::get('/transaction/store-id/{idStore}/create', [TransactionController::class, 'create'])->middleware('auth');
 Route::post('/transaction/store-id/{idStore}/store', [TransactionController::class, 'store'])->middleware('auth');
+
+Route::get('/copyright' , function () {
+return view('pages.copyright');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

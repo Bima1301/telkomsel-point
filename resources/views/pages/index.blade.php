@@ -11,6 +11,7 @@
 @endif
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800 font-weight-bold">Dashboard</h1>
+@canany(['superUser', 'PIC'])
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -36,7 +37,31 @@
                     @foreach ($realtime_status as $rs)
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
-                            <td>{{ $rs->merch_name }}</td>
+                            <td  data-toggle="modal" data-target="#exampleModalCenter{{ $rs->merch_name }}" style="cursor: pointer">
+                                {{ $rs->merch_name }}
+                                <!-- Modal Image Preview-->
+                                <div class="modal fade" id="exampleModalCenter{{ $rs->merch_name }}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-danger font-weight-bold" id="exampleModalLongTitle">{{ $rs->merch_name }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body d-flex justify-content-center">
+                                                <img src="{{ asset('storage/' . $rs->image) }}" class="img-fluid col-md-10" alt="">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td class="text-center">{{ $rs->stock_in }}</td>
                             @can('superUser')
                             <td class="d-flex justify-content-center">
@@ -101,6 +126,7 @@
         </div>
     </div>
 </div>
+@endcanany
 
 @include('partials.foot')
 @include('partials.footer')

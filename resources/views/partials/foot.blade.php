@@ -6,10 +6,16 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white py-4">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; 
+                            <abbr title="Click This !" class="text-decoration-none">
+                                <a class="text-decoration-none text-danger font-weight-bold" href="/copyright">
+                                    Filkom Universitas Brawijaya 2020
+                                </a>
+                            </abbr>
+                    </span>
                     </div>
                 </div>
             </footer>

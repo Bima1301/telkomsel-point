@@ -18,6 +18,12 @@ class MerchandiseController extends Controller
      */
     public function index()
     {
+        // if (auth()->user()->role == 'CS') {
+        //     return redirect()->back();
+        // }
+        if((auth()->user()->role !== 'superUser') && (auth()->user()->role !== 'PIC') ){
+            abort(403);
+        }
         $data = [
             'merchans' => Merchandise::latest()->get(),
             'page' => 'Merchandise |',
@@ -143,14 +149,14 @@ class MerchandiseController extends Controller
      * @param  \App\Models\Merchandise  $merchandise
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Merchandise $merchandise)
-    {
-        $this->authorize('superUser');
-        // dd($merchandise);
-        if ($merchandise->image) {
-            Storage::delete($merchandise->image);
-        }
-        Merchandise::destroy($merchandise->id);
-        return redirect('/merchandise')->with('success', 'Merchandise has been deleted!');
-    }
+    // public function destroy(Merchandise $merchandise)
+    // {
+    //     $this->authorize('superUser');
+    //     // dd($merchandise);
+    //     if ($merchandise->image) {
+    //         Storage::delete($merchandise->image);
+    //     }
+    //     Merchandise::destroy($merchandise->id);
+    //     return redirect('/merchandise')->with('success', 'Merchandise has been deleted!');
+    // }
 }

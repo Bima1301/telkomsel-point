@@ -29,11 +29,13 @@
             </div>
 
             <!-- Nav Item - Charts -->
+            @canany(['superUser', 'PIC'])
             <li class="nav-item {{ $active === 'merchandise' ? 'active' : '' }}">
                 <a class="nav-link" href="/merchandise">
                     <i class="fas fa-fw fa-gift"></i>
                     <span>Merchandise</span></a>
             </li>
+            @endcanany
 
             <!-- Nav Item - Tables -->
             <li class="nav-item {{ $active === 'store' ? 'active' : '' }}">
