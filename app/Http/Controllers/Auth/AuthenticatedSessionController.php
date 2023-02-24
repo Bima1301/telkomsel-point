@@ -30,16 +30,20 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         // dd($request);
-        $role = User::where('email', $request->email)->first();
-        if ($role->role == 'basicUser') {
-            return redirect()->back()->withErrors(['failedLogin' => 'silahkan menggubungi admin untuk mendapatkan akses']);
-        }else {
+        // $role = User::where('email', $request->email)->first();
+        // if ($role->role == 'basicUser') {
+        //     return redirect()->back()->withErrors(['failedLogin' => 'silahkan menggubungi admin untuk mendapatkan akses']);
+        // }else {
             $request->authenticate();
     
             $request->session()->regenerate();
     
+            if (auth()->user()->role === 'basicUser') {
+                auth()->logout();
+                return redirect('/login')->withErrors(['failedLogin' => 'silahkan menggubungi admin untuk mendapatkan akses']);
+            }
             return redirect()->intended(RouteServiceProvider::HOME);
-        }
+        // }
     }
 
     /**
