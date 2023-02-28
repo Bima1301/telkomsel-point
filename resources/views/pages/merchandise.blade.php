@@ -42,16 +42,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($merchans as $merchan)
+                    @foreach ($merchans as $key => $merchan)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $merchan->merch_name }}</td>
-                            <td data-toggle="modal" data-target="#exampleModalCenter{{ $merchan->merch_name }}" style="cursor: pointer">
+                            <td data-toggle="modal" data-target="#exampleModalCenter{{ $key }}" style="cursor: pointer">
                                 <img style=" width: 80px;object-fit: cover;" class="object-cover mb-3"
                                     src="{{ asset('storage/' . $merchan->image) }}" alt="">
 
                                 <!-- Modal Image Preview-->
-                                <div class="modal fade" id="exampleModalCenter{{ $merchan->merch_name }}" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="exampleModalCenter{{ $key }}" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">

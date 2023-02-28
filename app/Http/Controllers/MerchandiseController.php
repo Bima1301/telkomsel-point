@@ -121,6 +121,7 @@ class MerchandiseController extends Controller
      */
     public function update(UpdateMerchandiseRequest $request, Merchandise $merchandise)
     {
+        // dd($request);
         $this->authorize('superUser');
         // dd($request);
         // $isImage = $request->file('image')->store('merch-image');
@@ -139,6 +140,14 @@ class MerchandiseController extends Controller
                 'image' => $request->file('image')->store('merch-image'),
                 'minimal_point' => $request->minimal_point
             ]);
+        } else {
+            Merchandise::where('id',$merchandise->id)->update([
+                'merch_name' => $request->merch_name,
+                'keyword' => $request->keyword,
+                'verification_keyword' => $request->verification_keyword,
+                'minimal_point' => $request->minimal_point
+            ]);
+
         }
         return redirect('/merchandise')->with('success', 'Merchandise has been updated!');
     }

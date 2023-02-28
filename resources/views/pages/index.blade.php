@@ -9,6 +9,14 @@
         </button>
     </div>
 @endif
+@if (session()->has('failed'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Failed ! </strong>{{ session('failed') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800 font-weight-bold">Dashboard</h1>
 @canany(['superUser', 'PIC'])
@@ -92,7 +100,7 @@
                                                         <label for="Stock In">Edit Stock In for : <span
                                                                 class="text-danger">{{ $rs->merch_name }}
                                                             </span></label>
-                                                        <input type="text"
+                                                        <input type="number"
                                                             class="form-control @error('stock_in') is-invalid @enderror"
                                                             id="stock_in" name="stock_in" value="{{ $rs->stock_in }}">
                                                         @error('stock_in')

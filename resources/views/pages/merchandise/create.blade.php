@@ -3,8 +3,18 @@
 @include('partials.navbar')
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Merchandise</h1>
-
+<div class="d-flex flex-lg-row flex-column align-items-center justify-content-between">
+    <div>
+        <h1 class="h3 mb-2 text-danger font-weight-bold">Merchandise</h1>
+        <p class="mb-4">Merchandise that you have created will be displayed in the table below</p>
+    </div>
+    <a href="/merchandise" class="btn btn-secondary btn-icon-split mb-3 btn-sm" style="height: fit-content">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-left"></i>
+        </span>
+        <span class="text">Back to Merchan List</span>
+    </a>
+</div>
 <!-- Illustrations -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">

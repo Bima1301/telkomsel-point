@@ -80,6 +80,8 @@ class StoreStockController extends Controller
         $stock_in_old_temp = StoreStock::where('id' ,'=' , $idStoreStock)->first();
         $stock_in_old = $stock_in_old_temp->stock_in;
 
+        $store_stock_out_old = $stock_in_old_temp->stock_out;
+        
         $stock_before_update = $stock_out_old - $stock_in_old;
         // dd($stock_before_update );
         $rules = [
@@ -90,7 +92,7 @@ class StoreStockController extends Controller
         ];
         $validatedData = $request->validate($rules);
         $validatedData['id_store'] = $idStore;
-        $validatedData['stock_out'] = 0;
+        $validatedData['stock_out'] = $store_stock_out_old;
         $validatedData['user_id'] = auth()->user()->id;
         // $storeStock = StoreStock::create($validatedData);
         StoreStock::where('id',$idStoreStock)->update($validatedData);

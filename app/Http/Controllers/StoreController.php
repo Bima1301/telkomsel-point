@@ -76,7 +76,7 @@ class StoreController extends Controller
         //     abort(403);
         // }
         // dd($store);
-        if (auth()->user()->role !== 'superUser') {
+        if (auth()->user()->role != 'superUser') {
             if (auth()->user()->id_store_position !== $store->id) {
                 return redirect()->back();
             } else {

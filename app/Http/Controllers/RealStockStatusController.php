@@ -18,7 +18,11 @@ class RealStockStatusController extends Controller
     // }
 
     public function update(Request $request, $id){
-        // dd($request);
+        $stock_out_real = RealtimeStatus::where('id',$id)->first();
+
+        if ($request->stock_in < $stock_out_real->stock_out) {
+            return redirect('/')->with('failed', "Merchandise's stock must be greater than stock out!");
+        }
         $rules = [
             'stock_in' => 'required|numeric|integer|min:0',
         ];

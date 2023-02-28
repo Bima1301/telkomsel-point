@@ -66,14 +66,14 @@
                     class="form-control form-control-md @error('id_store_stock') is-invalid @enderror"
                     name="id_store_stock" id="id_store_stock">
                     @foreach ($store_stock as $s_stock)
-                        @if (old('id_merchandise') == $s_stock->id_merchandise)
+                        @if (old('id_store_stock') == $s_stock->id)
                             <option value={{ $s_stock->id }} selected>{{ $s_stock->merch_name }} </option>
                         @else
                             <option value={{ $s_stock->id }}>{{ $s_stock->merch_name }} ( {{ date('j F, Y', strtotime($s_stock->date)) }}) </option>
                         @endif
                     @endforeach
                 </select>
-                @error('id_merchandise')
+                @error('id_store_stock')
                     <small class="text-danger">
                         {{ $message }}
                     </small>
@@ -171,7 +171,7 @@
 @include('partials.footer')
 <script>
     function reviewFunction() {
-
+// console.log(document.getElementById("id_merchandise"));
         var date_review = document.getElementById("date").value
         document.getElementById("date_review").value = formatDate(date_review);
 
@@ -181,9 +181,11 @@
         var customer_review = document.getElementById("customer").value
         document.getElementById("customer_review").value = customer_review;
 
-        var id_merchandise_review = document.getElementById("id_merchandise")
+        
+        var id_merchandise_review = document.getElementById("id_store_stock")
         var text = id_merchandise_review.options[id_merchandise_review.selectedIndex].text;
         document.getElementById("id_merchandise_review").value = text;
+      
 
         var cs_review = document.getElementById("cs").value
         document.getElementById("cs_review").innerHTML = cs_review;
