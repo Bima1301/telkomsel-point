@@ -1,7 +1,7 @@
 @include('partials.head')
 
-<body class="" style="background-color: #FFF0F0">
-
+<body class="" style="background-color: #1D2C43">
+    <img class="tsel-logo" src="../img/logo.png" alt="telkomsel" >
     <div class="container">
         @error('failedLogin')
             <div class="alert alert-warning alert-dismissible fade show mt-3 d-flex justify-content-between align-items-center"
@@ -33,7 +33,13 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image-new"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image-new">
+                                
+                                <h1 class="text-center mt-5 neontext pulsate">Maryana</h1>
+                                <p class="text-center subneontext">Merchandise Inventory Branch Ngalam</p>
+                                <img id="inventory-img" class="inventory-img" src="../img/inventory.png" alt="inventory">
+                                <i class="fa fa-circle circle-pink" ></i>
+                            </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
@@ -61,8 +67,8 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" class="btn btn-danger btn-user btn-block"
-                                            style="margin-top: 100px">
+                                        <button type="submit" class="btn btn-user btn-block text-white"
+                                            style="margin-top: 100px; background-color: #C4292C">
                                             Login
                                         </button>
                                         <hr>
@@ -76,7 +82,7 @@
                                     </form>
 
                                     <div class="text-center">
-                                        <a class="text-danger small text-decoration-none" href="/register">Create an
+                                        <a style="color: #C4292C" class=" small text-decoration-none" href="/register">Create an
                                             Account!</a>
                                     </div>
                                 </div>

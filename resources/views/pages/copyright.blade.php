@@ -15,23 +15,31 @@
         body {
             font-family: tahoma;
             height: 100%;
-            background-image: url(https://picsum.photos/g/1920/1080);
+            background-image: url("/img/grey-landscape.jpg");
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
         }
 
+        @media only screen and (max-width: 768px) {
+            body {
+                background-image: url("/img/grey-potrait.jpg");
+
+            }
+        }
+
         .our-team {
             padding: 30px 0 40px;
             margin-bottom: 30px;
-            background-color: #f7f5ecc0;
+            background-color: #f7f5ecd2;
             text-align: center;
             overflow: hidden;
             position: relative;
             transition: .5s
         }
-        .our-team:hover{
+
+        .our-team:hover {
             background-color: #f7f5ec;
 
         }
@@ -89,7 +97,7 @@
             box-shadow: 0 0 0 14px #f7f5ec;
             transform: scale(0.8);
             filter: grayscale(0%);
-            
+
         }
 
         .our-team .title {
@@ -131,17 +139,28 @@
             color: red;
             background-color: #f7f5ec;
         }
+
         .mycard {
             transition: transform .2s
         }
+
         .mycard:hover {
             transform: scale(1.01);
         }
-        
+        .tsel-logo{
+            position: absolute;
+            width: 5%;
+            top: 0;
+            margin: 10px 10px 0px 0px;
+            right: 0;
+        }
     </style>
 </head>
 
 <body>
+    <a href="/">
+        <img class="tsel-logo" src="/img/telkomsel-icon.png" alt="">
+    </a>
     <div class="container">
         <div class="row mt-3">
             <div class="mycard col-12 col-sm-6 col-md-4 col-lg-4">
@@ -156,8 +175,7 @@
                     <ul class="social">
                         <li><a href="https://instagram.com/yanuar.bimantoro" class="fa fa-instagram"
                                 aria-hidden="true"></a></li>
-                        <li><a href="mailto:bima.aji1380@gmail.com" class="fa fa-envelope"
-                                aria-hidden="true"></a></li>
+                        <li><a href="mailto:bima.aji1380@gmail.com" class="fa fa-envelope" aria-hidden="true"></a></li>
                         <li><a href="https://www.linkedin.com/in/yanuar-bimantoro-aji-874232196/" class="fa fa-linkedin"
                                 aria-hidden="true"></a></li>
                     </ul>
@@ -173,12 +191,12 @@
                         <h4 class="title">Product Manager</h4>
                     </div>
                     <ul class="social">
-                        <li><a href="https://instagram.com/selamitavia" class="fa fa-instagram"
-                                aria-hidden="true"></a></li>
-                        <li><a href="mailto:selamitaputri1@gmail.com" class="fa fa-envelope"
-                                aria-hidden="true"></a></li>
-                        <li><a href="https://www.linkedin.com/in/selamita-taufiah-putri-5169151b1/" class="fa fa-linkedin"
-                                aria-hidden="true"></a></li>
+                        <li><a href="https://instagram.com/selamitavia" class="fa fa-instagram" aria-hidden="true"></a>
+                        </li>
+                        <li><a href="mailto:selamitaputri1@gmail.com" class="fa fa-envelope" aria-hidden="true"></a>
+                        </li>
+                        <li><a href="https://www.linkedin.com/in/selamita-taufiah-putri-5169151b1/"
+                                class="fa fa-linkedin" aria-hidden="true"></a></li>
                     </ul>
                 </div>
             </div>
@@ -194,8 +212,7 @@
                     <ul class="social">
                         <li><a href="https://www.instagram.com/layli.r_/" class="fa fa-instagram"
                                 aria-hidden="true"></a></li>
-                        <li><a href="mailto:layli.rmdhn@gmail.com" class="fa fa-envelope"
-                                aria-hidden="true"></a></li>
+                        <li><a href="mailto:layli.rmdhn@gmail.com" class="fa fa-envelope" aria-hidden="true"></a></li>
                         <li><a href="https://www.linkedin.com/in/layliromadhoni/" class="fa fa-linkedin"
                                 aria-hidden="true"></a></li>
                     </ul>
@@ -213,8 +230,7 @@
                     <ul class="social">
                         <li><a href="https://www.instagram.com/aufa.azmrn/" class="fa fa-instagram"
                                 aria-hidden="true"></a></li>
-                        <li><a href="mailto:aufa.azmrn@gmail.com" class="fa fa-envelope"
-                                aria-hidden="true"></a></li>
+                        <li><a href="mailto:aufa.azmrn@gmail.com" class="fa fa-envelope" aria-hidden="true"></a></li>
                         <li><a href="https://www.linkedin.com/in/aufa-azmirania/" class="fa fa-linkedin"
                                 aria-hidden="true"></a></li>
                     </ul>
@@ -251,8 +267,8 @@
                     <ul class="social">
                         <li><a href="https://www.instagram.com/rizalefnn/" class="fa fa-instagram"
                                 aria-hidden="true"></a></li>
-                        <li><a href="mailto:rizalefendi61@gmail.com" class="fa fa-envelope"
-                                aria-hidden="true"></a></li>
+                        <li><a href="mailto:rizalefendi61@gmail.com" class="fa fa-envelope" aria-hidden="true"></a>
+                        </li>
                         <li><a href="https://www.linkedin.com/in/muhammadrizalefendi/" class="fa fa-linkedin"
                                 aria-hidden="true"></a></li>
                     </ul>

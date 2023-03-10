@@ -63,16 +63,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($transaction as $transaction)
+                    @foreach ($transaction as $key => $transaction)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ date('j F, Y', strtotime($transaction->date)) }}</td>
                             <td>{{ $transaction->msisdn }}</td>
                             <td>{{ $transaction->customer }}</td>
-                            <td  data-toggle="modal" data-target="#exampleModalCenter{{ $transaction->merch_name }}" style="cursor: pointer">
+                            <td  data-toggle="modal" data-target="#exampleModalCenter{{ $key }}" style="cursor: pointer">
                                 {{ $transaction->merch_name }} ( {{ date('j F, Y', strtotime($transaction->store_stock_date)) }}  )
                             <!-- Modal Image Preview-->
-                            <div class="modal fade" id="exampleModalCenter{{ $transaction->merch_name }}" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="exampleModalCenter{{ $key }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">

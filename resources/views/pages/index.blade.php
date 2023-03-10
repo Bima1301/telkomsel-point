@@ -42,13 +42,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($realtime_status as $rs)
+                    @foreach ($realtime_status as $key => $rs)
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
-                            <td  data-toggle="modal" data-target="#exampleModalCenter{{ $rs->merch_name }}" style="cursor: pointer">
+                            <td  data-toggle="modal" data-target="#exampleModalCenter{{ $key }}" style="cursor: pointer">
                                 {{ $rs->merch_name }}
                                 <!-- Modal Image Preview-->
-                                <div class="modal fade" id="exampleModalCenter{{ $rs->merch_name }}" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="exampleModalCenter{{ $key }}" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">

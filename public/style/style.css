@@ -24,17 +24,101 @@
 }
 
 .bg-login-image-new {
-    background: url("../img/grapari.png");
+    background-color: #C4292C;
     background-position: center;
     background-size: cover;
 }
 
+.neontext {
+    font-weight: 800;
+    font-size: 80px;
+    color: #fff;
+    text-shadow:
+        0 0 5px #fff;
+  }
+.subneontext {
+    color: #fff;
+    text-shadow:
+        0 0 2px #fff;
+  }
+.inventory-img{
+    position: absolute;
+    bottom: 30px;
+    width: 67%;
+    z-index: 1000;
+    left: 65px;
+    -webkit-animation: breathing 5s ease-out infinite normal;
+    animation: breathing 5s ease-out infinite normal;
+    -webkit-font-smoothing: antialiased;
+}
+@-webkit-keyframes breathing {
+    0% {
+      -webkit-transform: scale(0.96);
+      transform: scale(0.96);
+    }
+  
+    25% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  
+    60% {
+      -webkit-transform: scale(0.96);
+      transform: scale(0.96);
+    }
+  
+    100% {
+      -webkit-transform: scale(0.96);
+      transform: scale(0.96);
+    }
+  }
+  
+  @keyframes breathing {
+    0% {
+      -webkit-transform: scale(0.96);
+      -ms-transform: scale(0.96);
+      transform: scale(0.96);
+    }
+  
+    25% {
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+    }
+  
+    60% {
+      -webkit-transform: scale(0.96);
+      -ms-transform: scale(0.96);
+      transform: scale(0.96);
+    }
+  
+    100% {
+      -webkit-transform: scale(0.96);
+      -ms-transform: scale(0.96);
+      transform: scale(0.96);
+    }
+  }
+  .circle-pink{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    transform: scale(20);
+    right: 50%;
+  }
 .bg-register-image {
-    background: url("../img/grapari.png");
+    background-color: #C4292C;
     background-position: center;
     background-size: cover;
+    background-image: none !important;
 }
 
+.tsel-logo{
+    position: absolute;
+    width: 10%;
+    top: 0;
+    right: 0;
+    margin: 15px 20px 0px 0px;
+}
 .page-item.active .page-link {
     background-color: #e74a3b !important;
     border-color: #e74a3b;

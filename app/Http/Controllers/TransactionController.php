@@ -89,7 +89,7 @@ class TransactionController extends Controller
         
         $rules = [
             'date' => 'required',
-            'msisdn' => 'required|numeric',
+            'msisdn' => 'required|numeric|digits:10',
             'customer' => 'required|max:255',
             'cs_name' => 'required|max:255',
             'id_store_stock' => 'required'

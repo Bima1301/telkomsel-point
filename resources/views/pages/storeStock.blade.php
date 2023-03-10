@@ -53,14 +53,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($store_stock as $s_stock)
+                    @foreach ($store_stock as $key => $s_stock)
                         <tr>
                             <td>{{ $loop->iteration }} </td>
                             <td>{{ date('j F, Y', strtotime($s_stock->date)) }} </td>
-                            <td data-toggle="modal" data-target="#exampleModalCenter{{ $s_stock->merch_name }}" style="cursor: pointer">
+                            <td data-toggle="modal" data-target="#exampleModalCenter{{ $key }}" style="cursor: pointer">
                                 {{ $s_stock->merch_name }} 
                                 <!-- Modal Image Preview-->
-                                <div class="modal fade" id="exampleModalCenter{{ $s_stock->merch_name }}" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="exampleModalCenter{{ $key }}" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">

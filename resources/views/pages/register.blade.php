@@ -1,14 +1,19 @@
 @include('partials.head')
 
-<body class="" style="background-color: #FFF0F0">
-
+<body class="" style="background-color: #1D2C43">
+    <img class="tsel-logo" src="../img/logo.png" alt="telkomsel" >
     <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image">
+                        <h1 class="text-center mt-5 neontext">Maryana</h1>
+                                <p class="text-center subneontext">Merchandise Inventory Branch Ngalam</p>
+                                <img id="inventory-img" class="inventory-img" src="../img/inventory.png" alt="inventory">
+                                <i class="fa fa-circle circle-pink" ></i>
+                    </div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
@@ -56,8 +61,8 @@
                                     @enderror
                                     </div>
                                 </div>
-                                <button type="submit" style="margin-top: 100px"
-                                    class="btn btn-danger btn-user btn-block">
+                                <button type="submit" style="margin-top: 100px; background-color: #C4292C"
+                                    class="btn  btn-user btn-block text-white">
                                     Register Account
                                 </button>
                                 <hr>
@@ -70,7 +75,7 @@
                             </form>
 
                             <div class="text-center">
-                                <a class="small text-danger text-decoration-none" href="/login">Already have an account? Login!</a>
+                                <a style="color: #C4292C" class="small text-decoration-none" href="/login">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
