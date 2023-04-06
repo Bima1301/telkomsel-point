@@ -1,7 +1,7 @@
 @include('partials.head')
 
 <body class="" style="background-color: #1D2C43">
-    <img class="tsel-logo" src="../img/logo.png" alt="telkomsel" >
+    {{-- <img class="tsel-logo" src="../img/logo.png" alt="telkomsel" > --}}
     <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
@@ -9,10 +9,11 @@
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image">
-                        <h1 class="text-center mt-5 neontext">Maryana</h1>
-                                <p class="text-center subneontext">Merchandise Inventory Branch Ngalam</p>
-                                <img id="inventory-img" class="inventory-img" src="../img/inventory.png" alt="inventory">
-                                <i class="fa fa-circle circle-pink" ></i>
+                        <div class="w-100">
+                            <img style="max-width: 100%; padding: 50px" src="../img/MARYANA.png" alt="">
+                        </div>
+                        <img id="inventory-img" class="inventory-img" src="../img/inventory.png" alt="inventory">
+                        <i class="fa fa-circle circle-pink"></i>
                     </div>
                     <div class="col-lg-7">
                         <div class="p-5">
@@ -24,7 +25,7 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
                                         placeholder="Name" id="name" name="name" required>
-                                        @error('name')
+                                    @error('name')
                                         <p style="color: red;font-size: 14px;margin-top: 5px">
                                             {{ $message }}
                                         </p>
@@ -44,24 +45,24 @@
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user" id="password"
                                             name="password" autocomplete="new-password" placeholder="Password" required>
-                                            @error('password')
-                                        <p style="color: red;font-size: 14px;margin-top: 5px">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
+                                        @error('password')
+                                            <p style="color: red;font-size: 14px;margin-top: 5px">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
                                             id="password_confirmation" name="password_confirmation"
                                             placeholder="Confirm Password" required>
-                                            @error('password_confirmation')
-                                        <p style="color: red;font-size: 14px;margin-top: 5px">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
+                                        @error('password_confirmation')
+                                            <p style="color: red;font-size: 14px;margin-top: 5px">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                 </div>
-                                <button type="submit" style="margin-top: 100px; background-color: #C4292C"
+                                <button type="submit" style="margin-top: 100px; background-color: #f5b88d"
                                     class="btn  btn-user btn-block text-white">
                                     Register Account
                                 </button>
@@ -75,7 +76,8 @@
                             </form>
 
                             <div class="text-center">
-                                <a style="color: #C4292C" class="small text-decoration-none" href="/login">Already have an account? Login!</a>
+                                <a style="color: #C4292C" class="small text-decoration-none" href="/login">Already have
+                                    an account? Login!</a>
                             </div>
                         </div>
                     </div>
